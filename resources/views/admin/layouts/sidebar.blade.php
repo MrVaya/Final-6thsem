@@ -1,6 +1,6 @@
  <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="{{ route('admin.dashboard') }}" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -56,7 +56,7 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">OrganicStore</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -68,33 +68,129 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item">
-              <a href="index.html" class="menu-link">
+            <li class="menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+              <a href="{{ route('admin.dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
 
-            <!-- Layouts -->
-            <li class="menu-item">
+            <!-- Bookings Management -->
+            <li class="menu-item {{ request()->routeIs('admin.bookings.*') ? 'active open' : '' }}">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">FUSTAl VENUE</div>
+                <i class="menu-icon tf-icons bx bx-calendar-check"></i>
+                <div data-i18n="Bookings">Bookings</div>
+                @php
+                  $pendingBookings = \App\Models\Booking::where('status', 'pending')->count();
+                @endphp
+                @if($pendingBookings > 0)
+                  <span class="badge badge-center rounded-pill bg-danger ms-auto">{{ $pendingBookings }}</span>
+                @endif
               </a>
-
               <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="{{ route('venue.create') }}" class="menu-link">
-                    <div data-i18n="Without menu">Add Venue</div>
+                <li class="menu-item {{ request()->routeIs('admin.bookings.index') ? 'active' : '' }}">
+                  <a href="{{ route('admin.bookings.index') }}" class="menu-link">
+                    <div data-i18n="All Bookings">All Bookings</div>
                   </a>
                 </li>
-                <li class="menu-item">
-                  <a href="{{ route('venue.index') }}" class="menu-link">
-                    <div data-i18n="Without navbar">Manage Venue</div>
+                <li class="menu-item {{ request()->routeIs('admin.bookings.create') ? 'active' : '' }}">
+                  <a href="{{ route('admin.bookings.create') }}" class="menu-link">
+                    <div data-i18n="Add Booking">Add Booking</div>
                   </a>
                 </li>
-               
               </ul>
+            </li>
+
+            <!-- Products Management -->
+            <li class="menu-item {{ request()->routeIs('admin.products.*') ? 'active open' : '' }}">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-package"></i>
+                <div data-i18n="Products">Products</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item {{ request()->routeIs('admin.products.index') ? 'active' : '' }}">
+                  <a href="{{ route('admin.products.index') }}" class="menu-link">
+                    <div data-i18n="All Products">All Products</div>
+                  </a>
+                </li>
+                <li class="menu-item {{ request()->routeIs('admin.products.create') ? 'active' : '' }}">
+                  <a href="{{ route('admin.products.create') }}" class="menu-link">
+                    <div data-i18n="Add Product">Add Product</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Categories Management -->
+            <li class="menu-item {{ request()->routeIs('admin.categories.*') ? 'active open' : '' }}">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-category"></i>
+                <div data-i18n="Categories">Categories</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item {{ request()->routeIs('admin.categories.index') ? 'active' : '' }}">
+                  <a href="{{ route('admin.categories.index') }}" class="menu-link">
+                    <div data-i18n="All Categories">All Categories</div>
+                  </a>
+                </li>
+                <li class="menu-item {{ request()->routeIs('admin.categories.create') ? 'active' : '' }}">
+                  <a href="{{ route('admin.categories.create') }}" class="menu-link">
+                    <div data-i18n="Add Category">Add Category</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Venues Management -->
+            <li class="menu-item {{ request()->routeIs('admin.venues.*') ? 'active open' : '' }}">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-store"></i>
+                <div data-i18n="Venues">Store Venues</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item {{ request()->routeIs('admin.venues.index') ? 'active' : '' }}">
+                  <a href="{{ route('admin.venues.index') }}" class="menu-link">
+                    <div data-i18n="All Venues">All Venues</div>
+                  </a>
+                </li>
+                <li class="menu-item {{ request()->routeIs('admin.venues.create') ? 'active' : '' }}">
+                  <a href="{{ route('admin.venues.create') }}" class="menu-link">
+                    <div data-i18n="Add Venue">Add Venue</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Hero Sections Management -->
+            <li class="menu-item {{ request()->routeIs('admin.hero-sections.*') ? 'active open' : '' }}">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-image"></i>
+                <div data-i18n="Hero Sections">Hero Sections</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item {{ request()->routeIs('admin.hero-sections.index') ? 'active' : '' }}">
+                  <a href="{{ route('admin.hero-sections.index') }}" class="menu-link">
+                    <div data-i18n="All Sections">All Sections</div>
+                  </a>
+                </li>
+                <li class="menu-item {{ request()->routeIs('admin.hero-sections.create') ? 'active' : '' }}">
+                  <a href="{{ route('admin.hero-sections.create') }}" class="menu-link">
+                    <div data-i18n="Add Section">Add Section</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Settings -->
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Settings</span>
+            </li>
+
+            <li class="menu-item">
+              <a href="{{ route('frontend.home') }}" target="_blank" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-globe"></i>
+                <div data-i18n="View Website">View Website</div>
+              </a>
             </li>
 
           </ul>
