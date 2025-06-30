@@ -12,11 +12,17 @@ class BookingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $bookings = Booking::with(['product', 'venue'])
-            ->latest()
-            ->paginate(15);
+        $query = Booking::with(['product', 'venue']);
+        
+        // Filter by status if provided
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+        
+        $bookings = $query->latest()->paginate(15);
+        
         return view('admin.bookings.index', compact('bookings'));
     }
 
