@@ -2,11 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\FrontendController;
 
 // Frontend Routes
-Route::get('/', function () {
-    return view('frontend.index');
-});
+Route::get('/', [FrontendController::class, 'index'])->name('frontend.home');
 
 // Public booking route (for "Book Now" functionality)
 Route::post('/book-now', [BookingController::class, 'storeFromFrontend'])->name('frontend.booking.store');
@@ -31,6 +30,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('products', 'App\Http\Controllers\ProductController');
     Route::resource('categories', 'App\Http\Controllers\CategoryController');
     Route::resource('bookings', 'App\Http\Controllers\BookingController');
+    Route::resource('hero-sections', 'App\Http\Controllers\HeroSectionController');
     
     // Additional booking routes
     Route::patch('bookings/{booking}/status', [BookingController::class, 'updateStatus'])->name('bookings.status');
