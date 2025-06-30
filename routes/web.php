@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\AdminDashboardController;
 
 // Frontend Routes
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.home');
@@ -11,9 +12,7 @@ Route::get('/', [FrontendController::class, 'index'])->name('frontend.home');
 Route::post('/book-now', [BookingController::class, 'storeFromFrontend'])->name('frontend.booking.store');
 
 // Admin Routes
-Route::get('/admin', function () {
-    return view('admin.index');
-})->name('admin.dashboard');
+Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
 // Admin Resource Routes
 Route::prefix('admin')->name('admin.')->group(function () {
