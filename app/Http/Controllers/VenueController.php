@@ -12,43 +12,33 @@ class VenueController extends Controller
      */
     public function index()
     {
-        $venue = Venue::all();
-        return view("admin.futsal-places.index" ,compact('venue'));
-        
-
+        $venues = Venue::all();
+        return view("admin.venues.index", compact('venues'));
     }
 
     /**
-     * Show the form for creating a new resource.   
+     * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view("admin.futsal-places.create");
-
+        return view("admin.venues.create");
     }
 
     /**
-     * Store a newly created resource in storage.       
+     * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {$validate_data = $request->validate([
-        'veunename' => 'required',
-        'location' => 'required',
-        'phone' => 'required',
-        'contact_person_name' => 'required' ]);
+    {
+        $validated_data = $request->validate([
+            'venuename' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'contact_person_name' => 'required|string|max:255'
+        ]);
 
-        
-        $venues = new Venue;
-        $venues->veunename = $request->veunename;
-        $venues->location = $request->location; 
-        $venues->phone = $request->phone;
-        $venues->contact_person_name = $request->contact_person_name;
-        $venues->save();
+        Venue::create($validated_data);
 
-        return redirect()->route('venue.index')->with('success', 'venues created successfully!');
-
-  
-        
+        return redirect()->route('venue.index')->with('success', 'Venue created successfully!');
     }
 
     /**
@@ -56,7 +46,7 @@ class VenueController extends Controller
      */
     public function show(Venue $venue)
     {
-        //
+        return view("admin.venues.show", compact('venue'));
     }
 
     /**
@@ -64,7 +54,7 @@ class VenueController extends Controller
      */
     public function edit(Venue $venue)
     {
-        //
+        return view("admin.venues.edit", compact('venue'));
     }
 
     /**
@@ -72,7 +62,16 @@ class VenueController extends Controller
      */
     public function update(Request $request, Venue $venue)
     {
-        //
+        $validated_data = $request->validate([
+            'venuename' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'contact_person_name' => 'required|string|max:255'
+        ]);
+
+        $venue->update($validated_data);
+
+        return redirect()->route('venue.index')->with('success', 'Venue updated successfully!');
     }
 
     /**
@@ -80,6 +79,7 @@ class VenueController extends Controller
      */
     public function destroy(Venue $venue)
     {
-        //
+        $venue->delete();
+        return redirect()->route('venue.index')->with('success', 'Venue deleted successfully!');
     }
 }
