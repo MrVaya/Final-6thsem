@@ -38,17 +38,32 @@
 
           <div class="col-lg-4">
             <ul class="navbar-nav list-unstyled d-flex flex-row gap-3 gap-lg-5 justify-content-center flex-wrap align-items-center mb-0 fw-bold text-uppercase text-dark">
-              <li class="nav-item active">
+              <li class="nav-item {{ request()->routeIs('frontend.home') ? 'active' : '' }}">
                 <a href="{{ route('frontend.home') }}" class="nav-link">Home</a>
               </li>
-              <li class="nav-item">
-                <a href="#venues" class="nav-link">Courts</a>
+              <li class="nav-item {{ request()->routeIs('frontend.venues') ? 'active' : '' }}">
+                <a href="{{ route('frontend.venues') }}" class="nav-link">Venues</a>
               </li>
-              <li class="nav-item">
-                <a href="#equipment" class="nav-link">Equipment</a>
+              <li class="nav-item {{ request()->routeIs('frontend.services') ? 'active' : '' }}">
+                <a href="{{ route('frontend.services') }}" class="nav-link">Services</a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">Book Now</a>
+              <li class="nav-item {{ request()->routeIs('frontend.about') ? 'active' : '' }}">
+                <a href="{{ route('frontend.about') }}" class="nav-link">About</a>
+              </li>
+              <li class="nav-item {{ request()->routeIs('frontend.contact') ? 'active' : '' }}">
+                <a href="{{ route('frontend.contact') }}" class="nav-link">Contact</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  More
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{ route('frontend.gallery') }}">Gallery</a></li>
+                  <li><a class="dropdown-item" href="{{ route('frontend.faq') }}">FAQ</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{{ route('frontend.privacy') }}">Privacy Policy</a></li>
+                  <li><a class="dropdown-item" href="{{ route('frontend.terms') }}">Terms & Conditions</a></li>
+                </ul>
               </li>
             </ul>
           </div>
@@ -73,6 +88,45 @@
             </ul>
           </div>
 
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Offcanvas -->
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title fw-bold text-primary" id="offcanvasNavbarLabel">FutsalPro</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('frontend.home') ? 'active' : '' }}" href="{{ route('frontend.home') }}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('frontend.venues') ? 'active' : '' }}" href="{{ route('frontend.venues') }}">Venues</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('frontend.services') ? 'active' : '' }}" href="{{ route('frontend.services') }}">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('frontend.about') ? 'active' : '' }}" href="{{ route('frontend.about') }}">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('frontend.contact') ? 'active' : '' }}" href="{{ route('frontend.contact') }}">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('frontend.gallery') ? 'active' : '' }}" href="{{ route('frontend.gallery') }}">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('frontend.faq') ? 'active' : '' }}" href="{{ route('frontend.faq') }}">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('frontend.privacy') ? 'active' : '' }}" href="{{ route('frontend.privacy') }}">Privacy Policy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('frontend.terms') ? 'active' : '' }}" href="{{ route('frontend.terms') }}">Terms & Conditions</a>
+            </li>
+          </ul>
         </div>
       </div>
     </header>
