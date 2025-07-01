@@ -65,6 +65,25 @@
                   <li><a class="dropdown-item" href="{{ route('frontend.terms') }}">Terms & Conditions</a></li>
                 </ul>
               </li>
+              <!-- Profile Section -->
+              <li class="nav-item dropdown">
+                @auth
+                  <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                    <li>
+                      <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="dropdown-item">Logout</button>
+                      </form>
+                    </li>
+                  </ul>
+                @else
+                  <a class="nav-link" href="{{ route('login') }}">Login</a>
+                  <a class="nav-link" href="{{ route('register') }}">Sign Up</a>
+                @endauth
+              </li>
             </ul>
           </div>
           

@@ -33,6 +33,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+            @auth
             <form id="bookingForm" method="POST" action="{{ route('frontend.booking.store') }}">
               @csrf
               <div class="row">
@@ -127,10 +128,19 @@
                 <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Any special requirements or notes..."></textarea>
               </div>
             </form>
+            @else
+            <div class="text-center py-5">
+              <h5 class="mb-4">You must be logged in to book a court.</h5>
+              <a href="{{ route('login') }}" class="btn btn-primary me-2">Login</a>
+              <a href="{{ route('register') }}" class="btn btn-outline-primary">Sign Up</a>
+            </div>
+            @endauth
           </div>
           <div class="modal-footer">
+            @auth
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
             <button type="submit" form="bookingForm" class="btn btn-primary">Book Court</button>
+            @endauth
           </div>
         </div>
       </div>

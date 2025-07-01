@@ -19,7 +19,9 @@ Route::get('/gallery', [FrontendController::class, 'gallery'])->name('frontend.g
 Route::get('/faq', [FrontendController::class, 'faq'])->name('frontend.faq');
 
 // Public booking route (for "Book Now" functionality)
-Route::post('/book-now', [BookingController::class, 'storeFromFrontend'])->name('frontend.booking.store');
+Route::post('/book-now', [BookingController::class, 'storeFromFrontend'])
+    ->middleware(['auth'])
+    ->name('frontend.booking.store');
 
 // Contact form submission
 Route::post('/contact', [FrontendController::class, 'contactSubmit'])->name('frontend.contact.submit');
