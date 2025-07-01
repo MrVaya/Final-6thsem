@@ -38,12 +38,15 @@ class FrontendController extends Controller
         // Get futsal courts/venues
         $venues = Venue::take(6)->get();
 
-        return view('frontend.index', compact(
-            'heroSections', 
-            'tournaments', 
-            'bestSellingProducts',
-            'featuredTournaments',
-            'venues'
-        ));
+        $products = \App\Models\Product::active()->get();
+
+        return view('frontend.index', [
+            'heroSections' => $heroSections,
+            'tournaments' => $tournaments,
+            
+            'featuredTournaments' => $featuredTournaments,
+            'venues' => $venues,
+            'products' => $products
+        ]);
     }
 } 

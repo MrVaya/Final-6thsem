@@ -121,21 +121,21 @@
               </ul>
             </li>
 
-            <!-- Categories Management -->
-            <li class="menu-item {{ request()->routeIs('admin.categories.*') ? 'active open' : '' }}">
+            <!-- Tournaments Management -->
+            <li class="menu-item {{ request()->routeIs('admin.tournaments.*') ? 'active open' : '' }}">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-category"></i>
-                <div data-i18n="Categories">Categories</div>
+                <div data-i18n="Tournaments">Tournaments</div>
               </a>
               <ul class="menu-sub">
-                <li class="menu-item {{ request()->routeIs('admin.categories.index') ? 'active' : '' }}">
-                  <a href="{{ route('admin.categories.index') }}" class="menu-link">
-                    <div data-i18n="All Categories">All Categories</div>
+                <li class="menu-item {{ request()->routeIs('admin.tournaments.index') ? 'active' : '' }}">
+                  <a href="{{ route('admin.tournaments.index') }}" class="menu-link">
+                    <div data-i18n="All Tournaments">All Tournaments</div>
                   </a>
                 </li>
-                <li class="menu-item {{ request()->routeIs('admin.categories.create') ? 'active' : '' }}">
-                  <a href="{{ route('admin.categories.create') }}" class="menu-link">
-                    <div data-i18n="Add Category">Add Category</div>
+                <li class="menu-item {{ request()->routeIs('admin.tournaments.create') ? 'active' : '' }}">
+                  <a href="{{ route('admin.tournaments.create') }}" class="menu-link">
+                    <div data-i18n="Add Tournament">Add Tournament</div>
                   </a>
                 </li>
               </ul>

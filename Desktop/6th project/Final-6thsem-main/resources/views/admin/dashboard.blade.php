@@ -80,10 +80,10 @@
                         <i class="bx bx-category bx-lg text-info"></i>
                       </div>
                     </div>
-                    <span class="fw-semibold d-block mb-1">Categories</span>
-                    <h3 class="card-title mb-2">{{ $stats['total_categories'] ?? 0 }}</h3>
+                    <span class="fw-semibold d-block mb-1">Tournaments</span>
+                    <h3 class="card-title mb-2">{{ $stats['total_tournaments'] ?? 0 }}</h3>
                     <small class="text-info fw-semibold">
-                      <a href="{{ route('admin.categories.index') }}" class="text-decoration-none">Manage Categories</a>
+                      <a href="{{ route('admin.tournaments.index') }}" class="text-decoration-none">Manage Tournaments</a>
                     </small>
                   </div>
                 </div>
@@ -182,8 +182,8 @@
                         </a>
                       </div>
                       <div class="col-md-3 col-6 mb-3">
-                        <a href="{{ route('admin.categories.create') }}" class="btn btn-outline-primary w-100">
-                          <i class="bx bx-category me-1"></i> Add Category
+                        <a href="{{ route('admin.tournaments.create') }}" class="btn btn-outline-primary w-100">
+                          <i class="bx bx-category me-1"></i> Add Tournament
                         </a>
                       </div>
                       <div class="col-md-3 col-6 mb-3">

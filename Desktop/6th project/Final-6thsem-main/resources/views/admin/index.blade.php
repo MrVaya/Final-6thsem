@@ -90,10 +90,10 @@
                         <i class="bx bx-category bx-lg text-info"></i>
                       </div>
                     </div>
-                    <span class="fw-semibold d-block mb-1">Categories</span>
-                    <h3 class="card-title mb-2">{{ $stats['total_categories'] }}</h3>
+                    <span class="fw-semibold d-block mb-1">Tournaments</span>
+                    <h3 class="card-title mb-2">{{ $stats['total_tournaments'] }}</h3>
                     <small class="text-info fw-semibold">
-                      <a href="{{ route('admin.categories.index') }}" class="text-decoration-none">Manage Categories</a>
+                      <a href="{{ route('admin.tournaments.index') }}" class="text-decoration-none">Manage Tournaments</a>
                     </small>
                   </div>
                 </div>
@@ -192,8 +192,8 @@
                           <a href="{{ route('admin.products.create') }}" class="btn btn-primary btn-sm">
                             <i class="bx bx-plus me-1"></i> Add Product
                           </a>
-                          <a href="{{ route('admin.categories.create') }}" class="btn btn-outline-primary btn-sm">
-                            <i class="bx bx-category me-1"></i> Add Category
+                          <a href="{{ route('admin.tournaments.create') }}" class="btn btn-outline-primary btn-sm">
+                            <i class="bx bx-category me-1"></i> Add Tournament
                           </a>
                           <a href="{{ route('admin.bookings.create') }}" class="btn btn-outline-success btn-sm">
                             <i class="bx bx-calendar-plus me-1"></i> New Booking

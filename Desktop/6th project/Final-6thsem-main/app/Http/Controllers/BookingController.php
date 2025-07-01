@@ -83,9 +83,11 @@ class BookingController extends Controller
 
         // Calculate total amount based on product price
         $totalAmount = 0;
-        if ($validated['product_id']) {
+        if (!empty($validated['product_id'])) {
             $product = Product::find($validated['product_id']);
-            $totalAmount = $product->price * $validated['quantity'];
+            if ($product) {
+                $totalAmount = $product->price * $validated['quantity'];
+            }
         }
 
         // Combine booking_date and booking_time

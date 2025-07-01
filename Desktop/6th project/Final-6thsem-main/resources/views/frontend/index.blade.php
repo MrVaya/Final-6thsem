@@ -58,6 +58,19 @@
                 </div>
                 <div class="col-md-6">
                   <div class="mb-3">
+                    <label for="product_id" class="form-label">Select Product (Optional)</label>
+                    <select class="form-select" id="product_id" name="product_id">
+                      <option value="">Choose a product...</option>
+                      @foreach($products as $product)
+                        <option value="{{ $product->id }}">{{ $product->name }} - ${{ number_format($product->price, 2) }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
                     <label for="venue_id" class="form-label">Select Court *</label>
                     <select class="form-select" id="venue_id" name="venue_id" required>
                       <option value="">Choose a court...</option>
@@ -67,14 +80,14 @@
                     </select>
                   </div>
                 </div>
-              </div>
-              <div class="row">
                 <div class="col-md-6">
                   <div class="mb-3">
                     <label for="booking_date" class="form-label">Booking Date *</label>
                     <input type="date" class="form-control" id="booking_date" name="booking_date" required min="{{ date('Y-m-d') }}">
                   </div>
                 </div>
+              </div>
+              <div class="row">
                 <div class="col-md-6">
                   <div class="mb-3">
                     <label for="booking_time" class="form-label">Booking Time *</label>
@@ -97,15 +110,17 @@
                     </select>
                   </div>
                 </div>
-              </div>
-              <div class="mb-3">
-                <label for="quantity" class="form-label">Duration (Hours) *</label>
-                <select class="form-select" id="quantity" name="quantity" required>
-                  <option value="1">1 Hour</option>
-                  <option value="2">2 Hours</option>
-                  <option value="3">3 Hours</option>
-                  <option value="4">4 Hours</option>
-                </select>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="quantity" class="form-label">Duration (Hours) *</label>
+                    <select class="form-select" id="quantity" name="quantity" required>
+                      <option value="1">1 Hour</option>
+                      <option value="2">2 Hours</option>
+                      <option value="3">3 Hours</option>
+                      <option value="4">4 Hours</option>
+                    </select>
+                  </div>
+                </div>
               </div>
               <div class="mb-3">
                 <label for="notes" class="form-label">Additional Notes</label>
@@ -149,12 +164,6 @@
                 <div class="row text-dark">
                   <div class="col-auto"><p class="fs-1 fw-bold lh-sm mb-0">{{ $venues->count() }}+</p></div>
                   <div class="col"><p class="text-uppercase lh-sm mb-0">Premium Courts</p></div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="row text-dark">
-                  <div class="col-auto"><p class="fs-1 fw-bold lh-sm mb-0">{{ $bestSellingProducts->count() }}+</p></div>
-                  <div class="col"><p class="text-uppercase lh-sm mb-0">Equipment Items</p></div>
                 </div>
               </div>
               <div class="col">
@@ -304,71 +313,6 @@
                   </div>
                   <div class="card-footer bg-transparent">
                     <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#bookingModal" onclick="selectVenue({{ $venue->id }}, '{{ $venue->venuename }}')">Book This Court</button>
-                  </div>
-                </div>
-              </div>
-              @endforeach
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    @endif
-
-    <!-- Equipment Products Section -->
-    @if($bestSellingProducts->count() > 0)
-    <section class="pb-5">
-      <div class="container-lg">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-header d-flex flex-wrap justify-content-between my-4">
-              <h2 class="section-title">Featured Equipment</h2>
-              <div class="d-flex align-items-center">
-                <a href="#" class="btn btn-primary rounded-1">View All</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-md-12">
-            <div class="product-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-              @foreach($bestSellingProducts as $product)
-              <div class="col">
-                <div class="product-item">
-                  <figure>
-                    <a href="#" title="{{ $product->name }}">
-                      <img src="https://images.unsplash.com/photo-1587384474964-3a06ce1ce699" alt="{{ $product->name }}" class="tab-image img-fluid rounded" style="height: 200px; width: 100%; object-fit: cover;">
-                    </a>
-                  </figure>
-                  <div class="d-flex flex-column text-center">
-                    <h3 class="fs-6 fw-normal">{{ $product->name }}</h3>
-                    <small class="text-muted">{{ $product->category->name ?? 'Equipment' }}</small>
-                    <div class="d-flex justify-content-center align-items-center gap-2 mt-2">
-                      <span class="text-dark fw-semibold">${{ number_format($product->price, 2) }}</span>
-                      @if($product->stock > 0)
-                        <span class="badge bg-success rounded-0 fw-normal px-2 fs-7 lh-1">In Stock</span>
-                      @else
-                        <span class="badge bg-danger rounded-0 fw-normal px-2 fs-7 lh-1">Out of Stock</span>
-                      @endif
-                    </div>
-                    <div class="button-area p-3 pt-2">
-                      <div class="row g-1 mt-2">
-                        <div class="col-3">
-                          <input type="number" name="quantity" class="form-control border-dark-subtle input-number quantity" value="1" min="1">
-                        </div>
-                        <div class="col-7">
-                          <a href="#" class="btn btn-primary rounded-1 p-2 fs-7 btn-cart">
-                            <svg width="18" height="18"><use xlink:href="#cart"></use></svg> Add to Cart
-                          </a>
-                        </div>
-                        <div class="col-2">
-                          <a href="#" class="btn btn-outline-dark rounded-1 p-2 fs-6">
-                            <svg width="18" height="18"><use xlink:href="#heart"></use></svg>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

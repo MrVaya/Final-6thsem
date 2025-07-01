@@ -39,7 +39,7 @@ class AdminDashboardController extends Controller
         // Low stock products
         $lowStockProducts = Product::where('stock', '<=', 10)
             ->where('stock', '>', 0)
-            ->with('category')
+            ->with('tournament')
             ->orderBy('stock', 'asc')
             ->take(5)
             ->get();
@@ -60,17 +60,17 @@ class AdminDashboardController extends Controller
             ];
         }
 
-        // Category performance
-        $categoryPerformance = Category::withCount(['products'])
+        // Tournament performance
+        $categoryPerformance = Tournament::withCount(['products'])
             ->with(['products' => function($query) {
                 $query->withCount('bookings');
             }])
             ->get()
-            ->map(function($category) {
-                $totalBookings = $category->products->sum('bookings_count');
+            ->map(function($tournament) {
+                $totalBookings = $tournament->products->sum('bookings_count');
                 return [
-                    'name' => $category->name,
-                    'products_count' => $category->products_count,
+                    'name' => $tournament->name,
+                    'products_count' => $tournament->products_count,
                     'bookings_count' => $totalBookings
                 ];
             });
