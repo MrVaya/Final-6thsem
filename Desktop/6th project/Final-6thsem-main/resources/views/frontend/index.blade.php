@@ -24,7 +24,7 @@
       </defs>
     </svg>
 
-    <!-- Booking Modal -->
+   
     <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -58,15 +58,7 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="product_id" class="form-label">Select Product (Optional)</label>
-                    <select class="form-select" id="product_id" name="product_id">
-                      <option value="">Choose a product...</option>
-                      @foreach($products as $product)
-                        <option value="{{ $product->id }}">{{ $product->name }} - ${{ number_format($product->price, 2) }}</option>
-                      @endforeach
-                    </select>
-                  </div>
+                
                 </div>
               </div>
               <div class="row">
@@ -117,8 +109,7 @@
                     <select class="form-select" id="quantity" name="quantity" required>
                       <option value="1">1 Hour</option>
                       <option value="2">2 Hours</option>
-                      <option value="3">3 Hours</option>
-                      <option value="4">4 Hours</option>
+                      
                     </select>
                   </div>
                 </div>
@@ -146,138 +137,119 @@
       </div>
     </div>
 
-    <!-- Hero Section with Dynamic Content -->
+    <!-- Hero Section  -->
     @if($heroSections->count() > 0)
     @foreach($heroSections as $index => $hero)
-    <section style="background-image: url('{{ $hero->background_image ?? "https://images.unsplash.com/photo-1630420598913-44208d36f9af" }}');background-repeat: no-repeat;background-size: cover;background-position: center;" class="{{ $index === 0 ? '' : 'd-none' }}">
-      <div class="container-lg">
-        <div class="row">
+    <section style="background-image: url('{{ $hero->background_image ?? "https://images.unsplash.com/photo-1630420598913-44208d36f9af" }}');background-repeat: no-repeat;background-size: cover;background-position: center; min-height: 600px;" class="d-flex align-items-center {{ $index === 0 ? '' : 'd-none' }}">
+      <div class="container-lg py-5">
+        <div class="row align-items-center">
           <div class="col-lg-6 pt-5 mt-5">
-            <h2 class="display-1 ls-1">
-              <span class="fw-bold text-primary">{{ explode(' ', $hero->title)[0] ?? 'Futsal' }}</span> 
-              {{ substr($hero->title, strpos($hero->title, ' ') + 1) }}
+            <h2 class="display-1 ls-1 fw-bold text-primary mb-3" style="font-size:3.5rem;">
+              {{ $hero->title }}
             </h2>
             @if($hero->subtitle)
-            <p class="fs-4">{{ $hero->subtitle }}</p>
+            <p class="fs-4 text-white">{{ $hero->subtitle }}</p>
             @endif
             @if($hero->description)
-            <p class="fs-5">{{ $hero->description }}</p>
+            <p class="fs-5 text-white">{{ $hero->description }}</p>
             @endif
-            <div class="d-flex gap-3">
+            <div class="d-flex gap-3 mt-4">
               @if($hero->cta_text && $hero->cta_link)
-              <button class="btn btn-primary text-uppercase fs-6 rounded-pill px-4 py-3 mt-3" data-bs-toggle="modal" data-bs-target="#bookingModal">{{ $hero->cta_text }}</button>
+              <a href="{{ $hero->cta_link }}" class="btn btn-primary text-uppercase fs-6 rounded-pill px-4 py-3">{{ $hero->cta_text }}</a>
               @endif
-              <a href="#venues" class="btn btn-dark text-uppercase fs-6 rounded-pill px-4 py-3 mt-3">View Courts</a>
-            </div>
-            <div class="row my-5">
-              <div class="col">
-                <div class="row text-dark">
-                  <div class="col-auto"><p class="fs-1 fw-bold lh-sm mb-0">{{ $venues->count() }}+</p></div>
-                  <div class="col"><p class="text-uppercase lh-sm mb-0">Premium Courts</p></div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="row text-dark">
-                  <div class="col-auto"><p class="fs-1 fw-bold lh-sm mb-0">24/7</p></div>
-                  <div class="col"><p class="text-uppercase lh-sm mb-0">Booking Available</p></div>
-                </div>
-              </div>
-            </div>
+              
+          </div>
+          <div class="col-lg-6 d-none d-lg-block text-end">
           </div>
         </div>
-        
-        <div class="row row-cols-1 row-cols-sm-3 row-cols-lg-3 g-0 justify-content-center">
-          <div class="col">
-            <div class="card border-0 bg-primary rounded-0 p-4 text-light">
-              <div class="row">
-                <div class="col-md-3 text-center">
-                  <svg width="60" height="60"><use xlink:href="#court"></use></svg>
-                </div>
-                <div class="col-md-9">
-                  <div class="card-body p-0">
-                    <h5 class="text-light">Professional Courts</h5>
-                    <p class="card-text">FIFA standard futsal courts with premium flooring.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card border-0 bg-secondary rounded-0 p-4 text-light">
-              <div class="row">
-                <div class="col-md-3 text-center">
-                  <svg width="60" height="60"><use xlink:href="#futsal"></use></svg>
-                </div>
-                <div class="col-md-9">
-                  <div class="card-body p-0">
-                    <h5 class="text-light">Quality Equipment</h5>
-                    <p class="card-text">Professional grade futsal balls and training gear.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card border-0 bg-danger rounded-0 p-4 text-light">
-              <div class="row">
-                <div class="col-md-3 text-center">
-                  <svg width="60" height="60"><use xlink:href="#calendar"></use></svg>
-                </div>
-                <div class="col-md-9">
-                  <div class="card-body p-0">
-                    <h5 class="text-light">Easy Booking</h5>
-                    <p class="card-text">Simple online booking system available 24/7.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      
       </div>
     </section>
-    @if(!$loop->last)
-    <br>
-    @endif
     @endforeach
     @endif
 
-    <!-- Equipment Categories Section -->
-    @if($tournaments->count() > 0)
-    <section class="py-5 overflow-hidden" id="equipment">
+    <!-- Three-Column Feature Section -->
+    <section class="py-5 bg-white">
       <div class="container-lg">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-header d-flex flex-wrap justify-content-between mb-5">
-              <h2 class="section-title">Equipment Categories</h2>
-              <div class="d-flex align-items-center">
-                <a href="#" class="btn btn-primary me-2">View All</a>
+        <div class="row g-4 text-center">
+          <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm" style="min-height:800px;">
+              <img src="{{ asset('frontend-assets/images/venue.jpeg') }}" class="card-img-top" alt="Venues" style="height:500px; object-fit:cover; width:100%;">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">Venues</h5>
+                <p class="card-text">Explore premium futsal courts in your area and book instantly.</p>
+                <a href="{{ route('frontend.venues') }}" class="btn btn-primary rounded-pill px-4">View Venues</a>
               </div>
             </div>
           </div>
+          <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm" style="min-height:800px;">
+              <img src="{{ asset('frontend-assets/images/tournament.jpg') }}" class="card-img-top" alt="Tournaments" style="height:500px; object-fit:cover; width:100%;">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">Tournaments</h5>
+                <p class="card-text">Join exciting tournaments and compete with the best teams.</p>
+                <a href="{{ route('frontend.tournaments') }}" class="btn btn-primary rounded-pill px-4">View Tournaments</a>
+              </div>
+            </div>
+          </div>
+          
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
-              @foreach($tournaments as $tournament)
-              <div class="col">
-                <a href="#" class="nav-link text-center">
-                  <div class="category-item bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 120px; height: 120px;">
-                    <svg width="60" height="60" class="text-primary">
-                      @if(str_contains(strtolower($tournament->name), 'ball'))
-                        <use xlink:href="#futsal"></use>
-                      @elseif(str_contains(strtolower($tournament->name), 'foot'))
-                        <use xlink:href="#heart"></use>
-                      @elseif(str_contains(strtolower($tournament->name), 'equipment'))
-                        <use xlink:href="#court"></use>
-                      @else
-                        <use xlink:href="#cart"></use>
-                      @endif
-                    </svg>
+      </div>
+    </section>
+
+    <!-- Featured Section with Grid -->
+    <section class="py-5 bg-light">
+      <div class="container-lg">
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-6">
+            <div class="card h-100 border-0 shadow-lg bg-white">
+              <img src="{{ $venues->first()->image ?? asset('frontend-assets/images/football.jpg') }}" class="card-img-top" alt="Featured Venue">
+              <div class="card-body">
+                <h4 class="card-title fw-bold">Featured Venue</h4>
+                <p class="card-text">{{ $venues->first()->description ?? 'Book our top-rated futsal court for your next match or event.' }}</p>
+                <a href="{{ route('frontend.venues') }}" class="btn btn-outline-primary rounded-pill px-4">Book Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="row g-3">
+              @foreach($venues->skip(1)->take(4) as $venue)
+              <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                  <img src="{{ $venue->image ?? asset('frontend-assets/images/bfit.jpg') }}" class="card-img-top" alt="{{ $venue->venuename }}">
+                  <div class="card-body">
+                    <h6 class="card-title fw-bold mb-1">{{ $venue->venuename }}</h6>
+                    <p class="card-text small">{{ Str::limit($venue->description, 60) }}</p>
+                    <a href="{{ route('frontend.venues') }}" class="btn btn-sm btn-primary rounded-pill">View</a>
                   </div>
-                  <h4 class="fs-6 mt-3 fw-normal category-title">{{ $tournament->name }}</h4>
-                  <small class="text-muted">{{ $tournament->products_count }} items</small>
-                </a>
+                </div>
+              </div>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tournament-->
+    @if($tournaments->count() > 0)
+    <section class="py-5 overflow-hidden" id="tournaments">
+      <div class="container-lg">
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-6 d-flex flex-column justify-content-center">
+            <h2 class="fw-bold display-5 mb-3">Tournaments</h2>
+            <p class="fs-5 text-muted">Join our exciting futsal tournaments and compete with the best teams in the region. Register now to be part of the action!</p>
+          </div>
+          <div class="col-lg-6">
+            <div class="row g-3">
+              @foreach($tournaments->take(4) as $tournament)
+              <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                  <img src="{{ $tournament->image ?? asset('frontend-assets/images/tournament.jpg') }}" class="card-img-top" alt="{{ $tournament->name }}" style="height:120px; object-fit:cover;">
+                  <div class="card-body">
+                    <h6 class="card-title fw-bold mb-1">{{ $tournament->name }}</h6>
+                    <a href="#" class="btn btn-success btn-sm rounded-pill px-3 mt-2">View</a>
+                  </div>
+                </div>
               </div>
               @endforeach
             </div>
@@ -287,7 +259,7 @@
     </section>
     @endif
 
-    <!-- Available Courts Section -->
+    <!-- Available Courts -->
     @if($venues->count() > 0)
     <section class="py-5 bg-light" id="venues">
       <div class="container-lg">
@@ -334,7 +306,7 @@
     </section>
     @endif
 
-    <!-- Booking CTA Section -->
+    <!-- Booking CTA  -->
     <section class="py-5 bg-primary text-white">
       <div class="container-lg">
         <div class="row">
@@ -343,14 +315,14 @@
             <p class="lead mb-4">Book your futsal court now and enjoy the best indoor football experience with professional facilities and equipment.</p>
             <div class="d-flex gap-3 justify-content-center">
               <button class="btn btn-light text-primary btn-lg rounded-pill px-5" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
-              <a href="#equipment" class="btn btn-outline-light btn-lg rounded-pill px-5">View Equipment</a>
+            
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Features  -->
     <section class="py-5">
       <div class="container-lg">
         <div class="row">
@@ -358,14 +330,14 @@
             <h2 class="section-title">Why Choose Our Futsal Center?</h2>
           </div>
         </div>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="row row-cols-2 row-cols-md-2 row-cols-lg-2 g-4">
           <div class="col">
             <div class="text-center">
               <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
                 <svg width="40" height="40" class="text-white"><use xlink:href="#trophy"></use></svg>
               </div>
               <h4>Professional Standards</h4>
-              <p class="text-muted">FIFA-standard courts with the best facilities and equipment for competitive play.</p>
+              <p class="text-muted">Amazing courts with the best facilities and equipment for competitive play.</p>
             </div>
           </div>
           <div class="col">
@@ -378,13 +350,7 @@
             </div>
           </div>
           <div class="col">
-            <div class="text-center">
-              <div class="bg-info rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                <svg width="40" height="40" class="text-white"><use xlink:href="#futsal"></use></svg>
-              </div>
-              <h4>Quality Equipment</h4>
-              <p class="text-muted">Professional-grade futsal balls, training equipment, and gear rental available.</p>
-            </div>
+            
           </div>
         </div>
       </div>

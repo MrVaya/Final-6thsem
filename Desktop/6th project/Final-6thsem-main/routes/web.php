@@ -17,6 +17,7 @@ Route::get('/privacy-policy', [FrontendController::class, 'privacy'])->name('fro
 Route::get('/terms-conditions', [FrontendController::class, 'terms'])->name('frontend.terms');
 Route::get('/gallery', [FrontendController::class, 'gallery'])->name('frontend.gallery');
 Route::get('/faq', [FrontendController::class, 'faq'])->name('frontend.faq');
+Route::get('/tournaments', [FrontendController::class, 'tournaments'])->name('frontend.tournaments');
 
 // Public booking route (for "Book Now" functionality)
 Route::post('/book-now', [BookingController::class, 'storeFromFrontend'])

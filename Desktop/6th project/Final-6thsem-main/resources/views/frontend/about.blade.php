@@ -5,8 +5,8 @@
     <!-- Page Header -->
     <div class="row mb-5">
         <div class="col-12 text-center">
-            <h1 class="display-4 fw-bold text-primary mb-3">About FutsalPro</h1>
-            <p class="lead text-muted">Your premier destination for futsal excellence since 2020</p>
+            <h1 class="display-4 fw-bold text-primary mb-3">About FutBook</h1>
+            <p class="lead text-muted">Your premier destination for futsal excellence since 2025</p>
         </div>
     </div>
 
@@ -20,22 +20,11 @@
         <div class="col-lg-6">
             <div class="h-100 d-flex flex-column justify-content-center">
                 <h2 class="display-6 fw-bold text-primary mb-4">Our Story</h2>
-                <p class="lead mb-4">FutsalPro was founded with a simple mission: to provide the best futsal facilities and experiences for players of all skill levels. We believe that futsal is more than just a sport – it's a passion that brings communities together.</p>
-                <p class="text-muted mb-4">Starting with a single court in 2020, we've grown to become the leading futsal facility provider in the region, serving thousands of players annually with our state-of-the-art courts and professional services.</p>
+                <p class="lead mb-4">Futbook was founded with a simple mission: to provide the best futsal facilities and experiences for players of all skill levels. We believe that futsal is more than just a sport – it's a passion that brings communities together.</p>
+                <p class="text-muted mb-4">Starting with a single court in 2025, we've grown to become the leading futsal facility provider in the region, serving thousands of players annually with our state-of-the-art courts and professional services.</p>
                 <div class="d-flex gap-4">
-                    <div class="text-center">
-                        <h3 class="text-primary fw-bold">50+</h3>
-                        <p class="text-muted small">Courts Available</p>
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-primary fw-bold">10,000+</h3>
-                        <p class="text-muted small">Happy Players</p>
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-primary fw-bold">4</h3>
-                        <p class="text-muted small">Years of Excellence</p>
-                    </div>
-                </div>
+                  <br>
+        
             </div>
         </div>
     </div>
@@ -141,7 +130,7 @@
         <div class="col-12">
             <div class="text-center mb-5">
                 <h2 class="display-6 fw-bold text-primary">Meet Our Team</h2>
-                <p class="lead text-muted">The passionate people behind FutsalPro</p>
+                <p class="lead text-muted">The passionate people behind Futbook</p>
             </div>
         </div>
         <div class="col-lg-4 col-md-6 mb-4">
@@ -152,9 +141,9 @@
                             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                         </svg>
                     </div>
-                    <h5 class="fw-bold text-primary mb-2">John Martinez</h5>
+                    <h5 class="fw-bold text-primary mb-2">NIRVAYA LIGAL</h5>
                     <p class="text-muted mb-2">Founder & CEO</p>
-                    <p class="text-muted small">Former professional futsal player with 15 years of experience. John founded FutsalPro to share his passion for the sport.</p>
+                    <p class="text-muted small">Former professional futsal player with 15 years of experience. NIRVAYA founded Futbook to share his passion for the sport.</p>
                 </div>
             </div>
         </div>
@@ -166,9 +155,9 @@
                             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                         </svg>
                     </div>
-                    <h5 class="fw-bold text-primary mb-2">Sarah Johnson</h5>
+                    <h5 class="fw-bold text-primary mb-2">ASHUTOSH GURUNG</h5>
                     <p class="text-muted mb-2">Operations Manager</p>
-                    <p class="text-muted small">Ensures smooth operations across all facilities. Sarah brings 10 years of sports management experience.</p>
+                    <p class="text-muted small">Ensures smooth operations across all facilities. ASHUTOSH brings 10 years of sports management experience.</p>
                 </div>
             </div>
         </div>
@@ -180,9 +169,9 @@
                             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                         </svg>
                     </div>
-                    <h5 class="fw-bold text-primary mb-2">Mike Rodriguez</h5>
+                    <h5 class="fw-bold text-primary mb-2">SAURAB KC. SHARMA</h5>
                     <p class="text-muted mb-2">Head Coach</p>
-                    <p class="text-muted small">Leads our coaching programs and training sessions. Mike has coached at professional level for 12 years.</p>
+                    <p class="text-muted small">Leads our coaching programs and training sessions. SAURAB has coached at professional level for 12 years.</p>
                 </div>
             </div>
         </div>
@@ -193,7 +182,7 @@
         <div class="col-12">
             <div class="card bg-primary text-white border-0 rounded-4">
                 <div class="card-body text-center py-5">
-                    <h3 class="fw-bold mb-3">Join the FutsalPro Family</h3>
+                    <h3 class="fw-bold mb-3">Join the Futbook Family</h3>
                     <p class="lead mb-4">Ready to experience the best futsal facilities and community? Get in touch with us today!</p>
                     <div class="d-flex gap-3 justify-content-center">
                         <a href="{{ route('frontend.contact') }}" class="btn btn-light btn-lg px-4">

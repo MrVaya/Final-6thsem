@@ -109,4 +109,10 @@ class FrontendController extends Controller
     {
         return view('frontend.faq');
     }
+
+    public function tournaments()
+    {
+        $tournaments = \App\Models\Tournament::all();
+        return view('frontend.tournaments', compact('tournaments'));
+    }
 } 

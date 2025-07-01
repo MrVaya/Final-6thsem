@@ -19,5 +19,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+      body, h1, h2, h3, h4, h5, h6, .btn, .nav-link, .card, .form-control {
+        font-family: 'Satoshi', 'Poppins', 'Nunito', 'Inter', sans-serif !important;
+      }
+    </style>
+
+    @stack('styles')
 
   </head>

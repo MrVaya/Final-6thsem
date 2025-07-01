@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-<div class="container-fluid px-4 py-5">
+<div class="container-fluid py-5 venues-main-container">
     <!-- Page Header -->
     <div class="row mb-5">
         <div class="col-12 text-center">
@@ -28,93 +28,21 @@
     <!-- Venues Grid -->
     <div class="row g-4">
         @forelse($venues as $venue)
-        <div class="col-lg-4 col-md-6">
-            <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden">
-                <div class="position-relative">
-                    <img src="https://images.unsplash.com/photo-1521217078329-f8fc1becab68?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxmdXRzYWwlMjBjb3VydHxlbnwwfHx8fDE3NTEzNDE5ODl8MA&ixlib=rb-4.1.0&q=85" class="card-img-top" alt="{{ $venue->venuename }}" style="height: 250px; object-fit: cover;">
-                    <div class="position-absolute top-0 end-0 m-3">
-                        <span class="badge bg-success fs-6 px-3 py-2">Available</span>
-                    </div>
+        <div class="col-lg-6 mb-4">
+            <div class="venue-card">
+                <div class="venue-card-img">
+                    <img src="https://images.unsplash.com/photo-1521217078329-f8fc1becab68?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxmdXRzYWwlMjBjb3VydHxlbnwwfHx8fDE3NTEzNDE5ODl8MA&ixlib=rb-4.1.0&q=85" alt="{{ $venue->venuename }}">
                 </div>
-                
-                <div class="card-body p-4">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <h5 class="card-title fw-bold text-primary mb-0">{{ $venue->venuename }}</h5>
-                        <div class="text-warning">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
+                <div class="venue-card-body">
+                    <div>
+                        <div class="venue-card-title">{{ $venue->venuename }}</div>
+                        <div class="venue-card-location">{{ $venue->location }}</div>
+                        <div class="venue-card-contact">Contact: {{ $venue->contact_person_name }}</div>
+                        <div class="venue-card-contact">{{ $venue->phone }}</div>
                     </div>
-                    
-                    <div class="mb-3">
-                        <div class="d-flex align-items-center mb-2">
-                            <svg width="16" height="16" class="text-muted me-2" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                            </svg>
-                            <span class="text-muted">{{ $venue->location }}</span>
-                        </div>
-                        
-                        <div class="d-flex align-items-center mb-2">
-                            <svg width="16" height="16" class="text-muted me-2" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                            </svg>
-                            <span class="text-muted">{{ $venue->phone }}</span>
-                        </div>
-                        
-                        <div class="d-flex align-items-center">
-                            <svg width="16" height="16" class="text-muted me-2" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                            </svg>
-                            <span class="text-muted">Contact: {{ $venue->contact_person_name }}</span>
-                        </div>
-                    </div>
-                    
-                    <div class="row g-2 mb-3">
-                        <div class="col-6">
-                            <div class="d-flex align-items-center">
-                                <svg width="14" height="14" class="text-success me-1" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                                </svg>
-                                <small class="text-muted">Air Conditioned</small>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="d-flex align-items-center">
-                                <svg width="14" height="14" class="text-success me-1" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                                </svg>
-                                <small class="text-muted">Changing Rooms</small>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="d-flex align-items-center">
-                                <svg width="14" height="14" class="text-success me-1" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                                </svg>
-                                <small class="text-muted">Equipment Rental</small>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="d-flex align-items-center">
-                                <svg width="14" height="14" class="text-success me-1" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                                </svg>
-                                <small class="text-muted">Parking</small>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <span class="h5 text-primary fw-bold">$25</span>
-                            <small class="text-muted">/hour</small>
-                        </div>
-                        <button class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#bookingModal">
-                            Book Now
-                        </button>
+                    <div class="venue-card-footer">
+                        <span class="venue-card-price">$25</span>
+                        <button class="venue-card-btn" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
                     </div>
                 </div>
             </div>
@@ -161,3 +89,86 @@
     </div>
 </div>
 @endsection
+
+@push('styles')
+<style>
+.venue-card {
+  display: flex;
+  flex-direction: row;
+  min-height: 220px;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px 0 rgba(60,72,88,.08);
+  overflow: hidden;
+  background: #fff;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.venue-card:hover {
+  box-shadow: 0 8px 32px 0 rgba(60,72,88,.16);
+  transform: translateY(-4px) scale(1.01);
+}
+.venue-card-img {
+  background: #eaf6f3;
+  flex: 0 0 38%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0;
+}
+.venue-card-img img {
+  max-width: 100%;
+  max-height: 250px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(60,72,88,.10);
+}
+.venue-card-body {
+  flex: 1 1 62%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px 28px 24px 28px;
+}
+.venue-card-title {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+.venue-card-location {
+  color: #6c757d;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.venue-card-contact {
+  color: #888;
+  font-size: 0.98rem;
+  margin-bottom: 0.25rem;
+}
+.venue-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+
+
+@media (max-width: 991px) {
+  .venue-card { flex-direction: column; min-height: unset; }
+  .venue-card-img { flex: unset; padding: 18px 0 0 0; justify-content: flex-start; }
+  .venue-card-body { padding: 22px 18px 18px 18px; }
+}
+.venues-main-container {
+  max-width: 950px;
+  margin: 0 auto;
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+@media (max-width: 991px) {
+  .venues-main-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+</style>
+@endpush

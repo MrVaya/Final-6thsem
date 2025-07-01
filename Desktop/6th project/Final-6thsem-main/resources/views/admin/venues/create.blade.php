@@ -9,7 +9,7 @@
                     <h6>Add New Venue</h6>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.venues.store') }}" method="POST">
+                    <form action="{{ route('admin.venues.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="venuename" class="form-label">Venue Name</label>
@@ -26,6 +26,10 @@
                         <div class="mb-3">
                             <label for="contact_person_name" class="form-label">Contact Person Name</label>
                             <input type="text" class="form-control" id="contact_person_name" name="contact_person_name" value="{{ old('contact_person_name') }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Venue Image</label>
+                            <input type="file" class="form-control" id="image" name="image" accept="image/*">
                         </div>
                         <button type="submit" class="btn btn-primary">Create Venue</button>
                         <a href="{{ route('admin.venues.index') }}" class="btn btn-secondary ms-2">Cancel</a>

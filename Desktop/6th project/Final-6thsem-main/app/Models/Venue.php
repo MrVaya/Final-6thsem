@@ -13,7 +13,8 @@ class Venue extends Model
         'venuename',
         'location',
         'phone',
-        'contact_person_name'
+        'contact_person_name',
+        'image',
     ];
 
     protected $casts = [
