@@ -49,4 +49,64 @@ class FrontendController extends Controller
             'products' => $products
         ]);
     }
+
+    public function venues()
+    {
+        $venues = Venue::all();
+        return view('frontend.venues', compact('venues'));
+    }
+
+    public function about()
+    {
+        return view('frontend.about');
+    }
+
+    public function contact()
+    {
+        return view('frontend.contact');
+    }
+
+    public function contactSubmit(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:20',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string'
+        ]);
+
+        // Here you would typically save to database or send email
+        // For now, we'll just redirect with success message
+        
+        return redirect()->route('frontend.contact')
+                        ->with('success', 'Thank you for your message! We will get back to you soon.');
+    }
+
+    public function services()
+    {
+        $venues = Venue::all();
+        return view('frontend.services', compact('venues'));
+    }
+
+    public function privacy()
+    {
+        return view('frontend.privacy');
+    }
+
+    public function terms()
+    {
+        return view('frontend.terms');
+    }
+
+    public function gallery()
+    {
+        $venues = Venue::all();
+        return view('frontend.gallery', compact('venues'));
+    }
+
+    public function faq()
+    {
+        return view('frontend.faq');
+    }
 } 
