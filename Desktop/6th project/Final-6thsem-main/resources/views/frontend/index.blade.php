@@ -154,10 +154,8 @@
             <p class="fs-5 text-white">{{ $hero->description }}</p>
             @endif
             <div class="d-flex gap-3 mt-4">
-              @if($hero->cta_text && $hero->cta_link)
-              <a href="{{ $hero->cta_link }}" class="btn btn-primary text-uppercase fs-6 rounded-pill px-4 py-3">{{ $hero->cta_text }}</a>
-              @endif
-              
+              <button class="btn btn-success btn-lg rounded-pill px-5" data-bs-toggle="modal" data-bs-target="#bookingModal">BOOK NOW</button>
+            </div>
           </div>
           <div class="col-lg-6 d-none d-lg-block text-end">
           </div>
