@@ -8,7 +8,7 @@
             <div class="col-md-4">
                 <div class="card h-100 shadow-sm">
                     @if($tournament->image)
-                        <img src="{{ asset($tournament->image) }}" class="card-img-top" alt="{{ $tournament->name }}">
+                        <img src="{{ asset('storage/' . $tournament->image) }}" class="card-img-top" alt="{{ $tournament->name }}">
                     @endif
                     <div class="card-body">
                         <h5 class="card-title">{{ $tournament->name }}</h5>

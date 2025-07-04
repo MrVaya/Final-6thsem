@@ -15,6 +15,7 @@ class Venue extends Model
         'phone',
         'contact_person_name',
         'image',
+        'price',
     ];
 
     protected $casts = [

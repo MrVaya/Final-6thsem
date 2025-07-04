@@ -13,14 +13,16 @@
         <li><a href="http://localhost:8000/tournaments" class="text-dark text-decoration-none">Tournaments</a></li>
         <li><a href="http://localhost:8000/about" class="text-dark text-decoration-none">About</a></li>
         <li><a href="http://localhost:8000/contact" class="text-dark text-decoration-none">Contact</a></li>
-        
       </ul>
     </nav>
-    <!-- Icons (right) -->
-    <div class="d-flex align-items-center gap-3" style="min-width:100px;">
-     
-      <li><a href="http://localhost:8000/login" class="text-dark text-decoration-none">Login</a></li>
-      <li><a href="http://localhost:8000/register" class="text-dark text-decoration-none">Sign Up</a></li>
+    <!-- Right Side: Login/Signup/Profile -->
+    <div class="d-flex align-items-center ms-auto gap-3" style="min-width:120px;">
+      @guest
+      <ul class="d-flex align-items-center mb-0 gap-2" style="list-style:none;">
+        <li><a href="http://localhost:8000/login" class="text-dark text-decoration-none">Login</a></li>
+        <li><a href="http://localhost:8000/register" class="text-dark text-decoration-none">Sign Up</a></li>
+      </ul>
+      @endguest
       <!-- Profile Icon/User -->
       @auth
         <a href="{{ route('profile.show') }}" class="text-dark d-flex align-items-center text-decoration-none">
@@ -32,7 +34,6 @@
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M2 18c0-2.2 3.6-4 8-4s8 1.8 8 4"/></svg>
         </a>
       @endauth
-     
     </div>
   </div>
 </header>

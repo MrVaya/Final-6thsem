@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('location');
             $table->string('phone');
             $table->string('contact_person_name');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

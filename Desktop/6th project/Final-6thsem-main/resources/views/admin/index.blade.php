@@ -25,7 +25,7 @@
                   <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                       <div>
-                        <h4 class="text-white mb-1">Welcome to OrganicStore Admin! 🎉</h4>
+                        <h4 class="text-white mb-1">Welcome to FUTBOOK 🎉</h4>
                         <p class="text-white-50 mb-0">
                           You have {{ $stats['pending_bookings'] }} pending bookings to review today.
                         </p>
@@ -41,34 +41,18 @@
             </div>
 
             <!-- Statistics Cards -->
-            <div class="row">
-              <div class="col-lg-3 col-md-6 col-6 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="card-title d-flex align-items-start justify-content-between">
-                      <div class="avatar flex-shrink-0">
-                        <i class="bx bx-package bx-lg text-primary"></i>
-                      </div>
-                      <div class="dropdown">
-                        <span class="badge bg-label-success rounded-pill">{{ $stats['active_products'] }}/{{ $stats['total_products'] }} Active</span>
-                      </div>
-                    </div>
-                    <span class="fw-semibold d-block mb-1">Products</span>
-                    <h3 class="card-title mb-2">{{ $stats['total_products'] }}</h3>
-                    <small class="text-success fw-semibold">
-                      <a href="{{ route('admin.products.index') }}" class="text-decoration-none">Manage Products</a>
-                    </small>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-lg-3 col-md-6 col-6 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="card-title d-flex align-items-start justify-content-between">
-                      <div class="avatar flex-shrink-0">
-                        <i class="bx bx-calendar-check bx-lg text-warning"></i>
-                      </div>
+              <div class="row">
+                <div class="col-lg-3 col-md-6 col-6 mb-4">
+                  <div class="card">
+                  
+                
+                <div class="col-lg-3 col-md-6 col-6 mb-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="card-title d-flex align-items-start justify-content-between">
+                        <div class="avatar flex-shrink-0">
+                          <i class="bx bx-calendar-check bx-lg text-warning"></i>
+                        </div>
                       @if($stats['pending_bookings'] > 0)
                         <span class="badge bg-label-warning rounded-pill">{{ $stats['pending_bookings'] }} Pending</span>
                       @endif

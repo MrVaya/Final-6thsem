@@ -56,7 +56,7 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">OrganicStore</span>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">FUTBOOK</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -102,24 +102,7 @@
             </li>
 
             <!-- Products Management -->
-            <li class="menu-item {{ request()->routeIs('admin.products.*') ? 'active open' : '' }}">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-package"></i>
-                <div data-i18n="Products">Products</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item {{ request()->routeIs('admin.products.index') ? 'active' : '' }}">
-                  <a href="{{ route('admin.products.index') }}" class="menu-link">
-                    <div data-i18n="All Products">All Products</div>
-                  </a>
-                </li>
-                <li class="menu-item {{ request()->routeIs('admin.products.create') ? 'active' : '' }}">
-                  <a href="{{ route('admin.products.create') }}" class="menu-link">
-                    <div data-i18n="Add Product">Add Product</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
+              
 
             <!-- Tournaments Management -->
             <li class="menu-item {{ request()->routeIs('admin.tournaments.*') ? 'active open' : '' }}">

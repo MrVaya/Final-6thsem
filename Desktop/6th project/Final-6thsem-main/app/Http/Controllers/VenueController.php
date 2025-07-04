@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Venue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VenueController extends Controller
 {
@@ -33,8 +34,13 @@ class VenueController extends Controller
             'venuename' => 'required|string|max:255',
             'location' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
-            'contact_person_name' => 'required|string|max:255'
+            'contact_person_name' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:5120',
         ]);
+
+        if ($request->hasFile('image')) {
+            $validated_data['image'] = $request->file('image')->store('venues', 'public');
+        }
 
         Venue::create($validated_data);
 
@@ -66,8 +72,18 @@ class VenueController extends Controller
             'venuename' => 'required|string|max:255',
             'location' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
-            'contact_person_name' => 'required|string|max:255'
+            'contact_person_name' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:5120',
         ]);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($venue->image) {
+                Storage::disk('public')->delete($venue->image);
+            }
+            $validated_data['image'] = $request->file('image')->store('venues', 'public');
+        }
 
         $venue->update($validated_data);
 

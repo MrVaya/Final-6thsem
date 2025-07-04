@@ -166,57 +166,60 @@
                             <span class="text-muted">{{ $booking->created_at->format('M j, Y') }}</span>
                           </td>
                           <td>
-                            <div class="dropdown">
-                              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                              </button>
-                              <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('admin.bookings.show', $booking) }}">
-                                  <i class="bx bx-show me-1"></i> View Details
-                                </a>
-                                <a class="dropdown-item" href="{{ route('admin.bookings.edit', $booking) }}">
-                                  <i class="bx bx-edit-alt me-1"></i> Edit
-                                </a>
-                                @if($booking->status === 'pending')
-                                  <div class="dropdown-divider"></div>
-                                  <form action="{{ route('admin.bookings.status', $booking) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('PATCH')
-                                    <input type="hidden" name="status" value="confirmed">
-                                    <button type="submit" class="dropdown-item text-success">
-                                      <i class="bx bx-check me-1"></i> Confirm
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="{{ route('admin.bookings.edit', $booking) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
-                                  </form>
-                                  <form action="{{ route('admin.bookings.status', $booking) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('PATCH')
-                                    <input type="hidden" name="status" value="cancelled">
-                                    <button type="submit" class="dropdown-item text-danger">
-                                      <i class="bx bx-x me-1"></i> Cancel
-                                    </button>
-                                  </form>
-                                @endif
-                                @if($booking->status === 'confirmed')
-                                  <div class="dropdown-divider"></div>
-                                  <form action="{{ route('admin.bookings.status', $booking) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('PATCH')
-                                    <input type="hidden" name="status" value="completed">
-                                    <button type="submit" class="dropdown-item text-info">
-                                      <i class="bx bx-check-circle me-1"></i> Mark Complete
-                                    </button>
-                                  </form>
-                                @endif
-                                <div class="dropdown-divider"></div>
-                                <form action="{{ route('admin.bookings.destroy', $booking) }}" method="POST" class="d-inline" 
-                                      onsubmit="return confirm('Are you sure you want to delete this booking?')">
-                                  @csrf
-                                  @method('DELETE')
-                                  <button type="submit" class="dropdown-item text-danger">
-                                    <i class="bx bx-trash me-1"></i> Delete
-                                  </button>
-                                </form>
-                              </div>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{ route('admin.bookings.show', $booking) }}">
+                                            <i class="bx bx-show me-1"></i> View Details
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.bookings.edit', $booking) }}">
+                                            <i class="bx bx-edit-alt me-1"></i> Edit
+                                        </a>
+                                        @if($booking->status === 'pending')
+                                          <div class="dropdown-divider"></div>
+                                          <form action="{{ route('admin.bookings.status', $booking) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PATCH')
+                                            <input type="hidden" name="status" value="confirmed">
+                                            <button type="submit" class="dropdown-item text-success">
+                                              <i class="bx bx-check me-1"></i> Confirm
+                                            </button>
+                                          </form>
+                                          <form action="{{ route('admin.bookings.status', $booking) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PATCH')
+                                            <input type="hidden" name="status" value="cancelled">
+                                            <button type="submit" class="dropdown-item text-danger">
+                                              <i class="bx bx-x me-1"></i> Cancel
+                                            </button>
+                                          </form>
+                                        @endif
+                                        @if($booking->status === 'confirmed')
+                                          <div class="dropdown-divider"></div>
+                                          <form action="{{ route('admin.bookings.status', $booking) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PATCH')
+                                            <input type="hidden" name="status" value="completed">
+                                            <button type="submit" class="dropdown-item text-info">
+                                              <i class="bx bx-check-circle me-1"></i> Mark Complete
+                                            </button>
+                                          </form>
+                                        @endif
+                                        <div class="dropdown-divider"></div>
+                                        <form action="{{ route('admin.bookings.destroy', $booking) }}" method="POST" class="d-inline" 
+                                              onsubmit="return confirm('Are you sure you want to delete this booking?')">
+                                          @csrf
+                                          @method('DELETE')
+                                          <button type="submit" class="dropdown-item text-danger">
+                                            <i class="bx bx-trash me-1"></i> Delete
+                                          </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                           </td>
                         </tr>

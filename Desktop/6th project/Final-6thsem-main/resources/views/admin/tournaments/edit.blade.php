@@ -28,6 +28,13 @@
                                                 @enderror
                                             </div>
                                             <div class="mb-3">
+                                                <label class="form-label" for="price">Price</label>
+                                                <input type="number" class="form-control" id="price" name="price" value="{{ old('price', $tournament->price) }}" step="0.01" min="0">
+                                                @error('price')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
                                                 <label for="image" class="form-label">Tournament Image</label>
                                                 <input type="file" class="form-control" id="image" name="image" accept="image/*">
                                                 @if($tournament->image)

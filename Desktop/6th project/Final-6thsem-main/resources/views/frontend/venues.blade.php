@@ -17,7 +17,7 @@
                 <img src="https://images.pexels.com/photos/6077792/pexels-photo-6077792.jpeg" class="card-img position-absolute top-0 start-0 w-100 h-100 object-fit-cover" alt="Futsal Facility">
                 <div class="card-img-overlay d-flex align-items-center justify-content-center" style="background: rgba(0,0,0,0.5);">
                     <div class="text-center text-white">
-                        <h2 class="display-5 fw-bold mb-3">Premium Futsal Facilities</h2>
+                        <h2 class="display-5 fw-bold mb-3">FUTBOOK Facilities</h2>
                         <p class="lead">Professional courts with modern amenities and perfect playing conditions</p>
                     </div>
                 </div>
@@ -28,22 +28,18 @@
     <!-- Venues Grid -->
     <div class="row g-4">
         @forelse($venues as $venue)
-        <div class="col-lg-6 mb-4">
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
             <div class="venue-card">
                 <div class="venue-card-img">
-                    <img src="https://images.unsplash.com/photo-1521217078329-f8fc1becab68?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxmdXRzYWwlMjBjb3VydHxlbnwwfHx8fDE3NTEzNDE5ODl8MA&ixlib=rb-4.1.0&q=85" alt="{{ $venue->venuename }}">
+                    <img src="{{ $venue->image ? asset('storage/' . $venue->image) . '?v=' . $venue->updated_at->timestamp : 'https://images.unsplash.com/photo-1521217078329-f8fc1becab68?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxmdXRzYWwlMjBjb3VydHxlbnwwfHx8fDE3NTEzNDE5ODl8MA&ixlib=rb-4.1.0&q=85' }}" alt="{{ $venue->venuename }}">
                 </div>
-                <div class="venue-card-body">
-                    <div>
-                        <div class="venue-card-title">{{ $venue->venuename }}</div>
-                        <div class="venue-card-location">{{ $venue->location }}</div>
-                        <div class="venue-card-contact">Contact: {{ $venue->contact_person_name }}</div>
-                        <div class="venue-card-contact">{{ $venue->phone }}</div>
-                    </div>
-                    <div class="venue-card-footer">
-                        <span class="venue-card-price">$25</span>
-                        <button class="venue-card-btn" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
-                    </div>
+                <div class="venue-card-title">{{ strtoupper($venue->venuename) }}</div>
+                <div class="venue-card-info">{{ strtoupper($venue->location) }}</div>
+                <div class="venue-card-info">Contact: {{ strtoupper($venue->contact_person_name) }}</div>
+                <div class="venue-card-info">{{ $venue->phone }}</div>
+                <div class="venue-card-price">Rs. 1300</div>
+                <div class="venue-card-footer">
+                    <button class="btn" data-bs-toggle="modal" data-bs-target="#bookingModal" onclick="selectVenue({{ $venue->id }}, '{{ $venue->venuename }}')">Book Now</button>
                 </div>
             </div>
         </div>
@@ -88,87 +84,126 @@
         </div>
     </div>
 </div>
+
+<!-- Booking Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="{{ route('frontend.booking.store') }}" method="POST">
+      @csrf
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bookingModalLabel">Book Venue: <span id="modalVenueName"></span></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="venue_id" id="venue_id" value="">
+          <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" name="date" required>
+          </div>
+          <div class="mb-3">
+            <label for="time" class="form-label">Time</label>
+            <input type="time" class="form-control" name="time" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Confirm Booking</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+function selectVenue(id, name) {
+    var venueSelect = document.getElementById('venue_id');
+    if (venueSelect) {
+        venueSelect.value = id;
+    }
+    var venueNameSpan = document.getElementById('modalVenueName');
+    if (venueNameSpan) {
+        venueNameSpan.textContent = name;
+    }
+}
+</script>
 @endsection
 
 @push('styles')
 <style>
 .venue-card {
-  display: flex;
-  flex-direction: row;
-  min-height: 220px;
-  border-radius: 20px;
-  box-shadow: 0 4px 24px 0 rgba(60,72,88,.08);
-  overflow: hidden;
-  background: #fff;
-  transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px 0 rgba(60,72,88,.08);
+    overflow: hidden;
+    min-width: 220px;
+    max-width: 320px;
+    margin: 0 auto;
+    padding-bottom: 0;
+    transition: box-shadow 0.2s;
 }
 .venue-card:hover {
-  box-shadow: 0 8px 32px 0 rgba(60,72,88,.16);
-  transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 8px 32px 0 rgba(60,72,88,.16);
 }
 .venue-card-img {
-  background: #eaf6f3;
-  flex: 0 0 38%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 0;
+    width: 100%;
+    aspect-ratio: 4/3;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f8f8;
 }
 .venue-card-img img {
-  max-width: 100%;
-  max-height: 250px;
-  border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(60,72,88,.10);
-}
-.venue-card-body {
-  flex: 1 1 62%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 32px 28px 24px 28px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0;
 }
 .venue-card-title {
-  font-family: 'Satoshi', sans-serif;
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: #222;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 1rem 0 0.25rem 0;
+    color: #222;
+    letter-spacing: 1px;
 }
-.venue-card-location {
-  color: #6c757d;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
+.venue-card-info {
+    text-align: center;
+    color: #888;
+    font-size: 0.98rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
 }
-.venue-card-contact {
-  color: #888;
-  font-size: 0.98rem;
-  margin-bottom: 0.25rem;
+.venue-card-price {
+    color: #43a047;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.75rem;
 }
 .venue-card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 1.5rem;
+    width: 100%;
+    padding: 0;
+    margin-top: auto;
 }
-
-
-
-@media (max-width: 991px) {
-  .venue-card { flex-direction: column; min-height: unset; }
-  .venue-card-img { flex: unset; padding: 18px 0 0 0; justify-content: flex-start; }
-  .venue-card-body { padding: 22px 18px 18px 18px; }
+.venue-card-footer .btn {
+    width: 100%;
+    background: #43a047;
+    color: #fff;
+    border-radius: 0 0 16px 16px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 0.7rem 0;
+    border: none;
+    transition: background 0.2s;
 }
-.venues-main-container {
-  max-width: 950px;
-  margin: 0 auto;
-  padding-left: 5rem;
-  padding-right: 5rem;
-}
-@media (max-width: 991px) {
-  .venues-main-container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+.venue-card-footer .btn:hover {
+    background: #2e7031;
 }
 </style>
 @endpush

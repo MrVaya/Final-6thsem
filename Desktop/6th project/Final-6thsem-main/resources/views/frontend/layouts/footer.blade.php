@@ -1,5 +1,5 @@
 <footer class="py-5 animate-footer" style="background:#111; color:#fff;">
-  <div class="container-lg">
+      <div class="container-lg">
     <div class="row align-items-start">
       <!-- Logo and Description -->
       <div class="col-lg-4 col-md-6 mb-4 mb-lg-0 text-center text-lg-start">
@@ -18,9 +18,9 @@
           <div class="col-6">
             <h5 class="fw-bold mb-3 text-white">Support</h5>
             <ul class="list-unstyled">
-              <li><a href="http://localhost:8000/faq" class="text-white text-decoration-none">FAQ</a></li>
+              
               <li><a href="http://localhost:8000/contact" class="text-white text-decoration-none">Contact</a></li>
-            </ul>
+              </ul>
           </div>
           <div class="col-6">
             <h5 class="fw-bold mb-3 text-white">Links</h5>
@@ -28,7 +28,7 @@
               <li><a href="http://localhost:8000/about" class="text-white text-decoration-none">About us</a></li>
               <li><a href="{{ route('frontend.terms') }}" class="text-white text-decoration-none">Conditions</a></li>
               <li><a href="{{ route('frontend.privacy') }}" class="text-white text-decoration-none">Privacy Policy</a></li>
-            </ul>
+              </ul>
           </div>
         </div>
       </div>
@@ -38,8 +38,8 @@
         <div class="mb-1 text-white">+977 9805802329</div>
         <div class="mb-1 text-white">Pokhara, Nepal</div>
         <div class="mb-1 text-white">info@futbook.com</div>
-      </div>
-    </div>
+          </div>
+        </div>
     <div class="row mt-4">
       <div class="col-12 text-center text-white small">
         Copyright © 2025 | Powered by MR VAYA

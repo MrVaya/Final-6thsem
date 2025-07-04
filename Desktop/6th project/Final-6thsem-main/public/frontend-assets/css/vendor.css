@@ -250,3 +250,82 @@ body.chocolat-open > .chocolat-image-wrapper {
 .chocolat-zoomable.chocolat-zooming-out .chocolat-img {
     transition: margin .2s ease;
 }
+
+/* Responsive styles for tournaments grid */
+@media (max-width: 991.98px) {
+  .row.g-4 > .col-md-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+@media (max-width: 600px) {
+  .row.g-4 > .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+@media (max-width: 500px) {
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+  .container.py-5 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  h2.mb-4 {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 575.98px) {
+  .card-body {
+    padding: 0.75rem;
+  }
+  .card-title {
+    font-size: 1.1rem;
+  }
+  .card-text {
+    font-size: 0.95rem;
+  }
+}
+
+/* Responsive Navbar Fix */
+@media (max-width: 991.98px) {
+  header .container-fluid {
+    flex-wrap: wrap;
+  }
+  header nav {
+    display: none !important;
+  }
+  header .d-flex.align-items-center.ms-auto.gap-3 {
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .navbar-toggler {
+    display: block !important;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    margin-left: 10px;
+  }
+}
+@media (min-width: 992px) {
+  .offcanvas {
+    display: none !important;
+  }
+  .navbar-toggler {
+    display: none !important;
+  }
+}
+header .d-flex.align-items-center.ms-auto.gap-3 ul {
+  margin-bottom: 0;
+  padding-left: 0;
+}
+header .d-flex.align-items-center.ms-auto.gap-3 ul li {
+  list-style: none;
+  margin-right: 8px;
+}
+header .d-flex.align-items-center.ms-auto.gap-3 ul li:last-child {
+  margin-right: 0;
+}

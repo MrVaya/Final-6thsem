@@ -15,8 +15,10 @@
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Image</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Slug</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Active</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Featured</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
@@ -26,8 +28,16 @@
                                 @forelse($tournaments as $tournament)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        @if($tournament->image)
+                                            <img src="{{ asset('storage/' . $tournament->image) }}" alt="Tournament Image" style="width: 80px; height: 50px; object-fit: cover;">
+                                        @else
+                                            <span class="text-muted">No image</span>
+                                        @endif
+                                    </td>
                                     <td>{{ $tournament->name }}</td>
                                     <td>{{ $tournament->slug }}</td>
+                                    <td>{{ $tournament->price ?? '-' }}</td>
                                     <td>
                                         @if($tournament->is_active)
                                             <span class="badge bg-success">Yes</span>
@@ -48,7 +58,7 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="6" class="text-center">No tournaments found.</td>
+                                    <td colspan="8" class="text-center">No tournaments found.</td>
                                 </tr>
                                 @endforelse
                             </tbody>

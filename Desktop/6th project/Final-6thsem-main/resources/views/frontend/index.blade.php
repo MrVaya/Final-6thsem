@@ -17,7 +17,7 @@
         <symbol xmlns="http://www.w3.org/2000/svg" id="arrow-right" viewBox="0 0 24 24"><path fill="currentColor" d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l5-5a1 1 0 0 0 .21-.33a1 1 0 0 0 0-.76Z"/></symbol>
         <symbol xmlns="http://www.w3.org/2000/svg" id="calendar" viewBox="0 0 24 24"><path fill="currentColor" d="M19 4h-2V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm1 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-7h16Zm0-9H4V7a1 1 0 0 1 1-1h2v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h2a1 1 0 0 1 1 1Z"/></symbol>
         <symbol xmlns="http://www.w3.org/2000/svg" id="heart" viewBox="0 0 24 24"><path fill="currentColor" d="M20.16 4.61A6.27 6.27 0 0 0 12 4a6.27 6.27 0 0 0-8.16 9.48l7.45 7.45a1 1 0 0 0 1.42 0l7.45-7.45a6.27 6.27 0 0 0 0-8.87Zm-1.41 7.46L12 18.81l-6.75-6.74a4.28 4.28 0 0 1 3-7.3a4.25 4.25 0 0 1 3 1.25a1 1 0 0 0 1.42 0a4.27 4.27 0 0 1 6 6.05Z"/></symbol>
-        <symbol xmlns="http://www.w3.org/2000/svg" id="cart" viewBox="0 0 24 24"><path fill="currentColor" d="M8.5 19a1.5 1.5 0 1 0 1.5 1.5A1.5 1.5 0 0 0 8.5 19ZM19 16H7a1 1 0 0 1 0-2h8.491a3.013 3.013 0 0 0 2.885-2.176l1.585-5.55A1 1 0 0 0 19 5H6.74a3.007 3.007 0 0 0-2.82-2H3a1 1 0 0 0 0 2h.921a1.005 1.005 0 0 1 .962.725l.155.545v.005l1.641 5.742A3 3 0 0 0 7 18h12a1 1 0 0 0 0-2Zm-1.326-9l-1.22 4.274a1.005 1.005 0 0 1-.963.726H8.754l-.255-.892L7.326 7ZM16.5 19a1.5 1.5 0 1 0 1.5 1.5a1.5 1.5 0 0 0-1.5-1.5Z"/></symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" id="cart" viewBox="0 0 24 24"><path fill="currentColor" d="M8.5 19a1.5 1.5 0 1 0 1.5 1.5A1.5 1.5 0 0 0 8.5 19ZM19 16H7a1 1 0 0 1 0-2h8.491a3.013 3.013 0 0 0 2.885-2.176l1.585-5.55A1 1 0 0 0 19 5H6.74a3.007 3.007 0 0 0-2.82-2H3a1 1 0 0 0 0 2h.921a1.005 1.005 0 0 1 .962.725l.155.545v.005l1.641 5.742A3 3 0 0 0 7 18h12a1 1 0 0 0 0-2Zm-1.326-9l-1.22 4.274a1.005 1.005 0 0 1-.963.726H8.754l-.255-.892L7.326 7ZM16.5 19a1.5 1.5 0 1 0 1.5 1.5Z"/></symbol>
         <symbol xmlns="http://www.w3.org/2000/svg" id="futsal" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2zm3.5 6L12 10.5L8.5 8L12 5.5L15.5 8zM8.5 16L12 13.5L15.5 16L12 18.5L8.5 16z"/></symbol>
         <symbol xmlns="http://www.w3.org/2000/svg" id="court" viewBox="0 0 24 24"><path fill="currentColor" d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM11 17H4v-2h7v2zm0-4H4v-2h7v2zm0-4H4V7h7v2zm9 8h-7v-2h7v2zm0-4h-7v-2h7v2zm0-4h-7V7h7v2z"/></symbol>
         <symbol xmlns="http://www.w3.org/2000/svg" id="trophy" viewBox="0 0 24 24"><path fill="currentColor" d="M7 3V1a1 1 0 0 1 2 0v2h6V1a1 1 0 0 1 2 0v2h1a2 2 0 0 1 2 2v1h1a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3h-1v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6H3a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3h1V5a2 2 0 0 1 2-2h1zM6 8v12h12V8H6zM4 9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h1V9H4zm16 0v6h1a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-1z"/></symbol>
@@ -200,7 +200,9 @@
         <div class="row g-4 align-items-stretch">
           <div class="col-lg-6">
             <div class="card h-100 border-0 shadow-lg bg-white">
-              <img src="{{ $venues->first()->image ?? asset('frontend-assets/images/football.jpg') }}" class="card-img-top" alt="Featured Venue">
+              <div class="featured-venue-card-img">
+                <img src="{{ asset('frontend-assets/images/football.jpg') }}" class="card-img-top" alt="Featured Venue">
+              </div>
               <div class="card-body">
                 <h4 class="card-title fw-bold">Featured Venue</h4>
                 <p class="card-text">{{ $venues->first()->description ?? 'Book our top-rated futsal court for your next match or event.' }}</p>
@@ -213,11 +215,20 @@
               @foreach($venues->skip(1)->take(4) as $venue)
               <div class="col-md-6">
                 <div class="card h-100 border-0 shadow-sm">
-                  <img src="{{ $venue->image ?? asset('frontend-assets/images/bfit.jpg') }}" class="card-img-top" alt="{{ $venue->venuename }}">
+                  <div class="featured-venue-card-img">
+                    <img src="{{ $venue->image ? asset('storage/' . $venue->image) : asset('frontend-assets/images/default.jpg') }}"
+                         alt="{{ $venue->venuename }}"
+                         onerror="this.onerror=null;this.src='{{ asset('frontend-assets/images/default.jpg') }}';">
+                  </div>
                   <div class="card-body">
                     <h6 class="card-title fw-bold mb-1">{{ $venue->venuename }}</h6>
                     <p class="card-text small">{{ Str::limit($venue->description, 60) }}</p>
-                    <a href="{{ route('frontend.venues') }}" class="btn btn-sm btn-primary rounded-pill">View</a>
+                    <div class="venue-card-footer d-flex align-items-center justify-content-between">
+                        <span class="venue-card-price fw-bold text-primary" style="font-size: 1.2rem;">Rs. 1300</span>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal" onclick="selectVenue({{ $venue->id }}, '{{ $venue->venuename }}')">
+                            Book Now
+                        </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -277,23 +288,26 @@
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
               @foreach($venues as $venue)
               <div class="col">
-                <div class="card h-100 border-0 shadow-sm">
-                  <img src="https://images.unsplash.com/photo-1598026878267-1f22ae804eac" class="card-img-top" alt="{{ $venue->venuename }}" style="height: 200px; object-fit: cover;">
-                  <div class="card-body">
+                <div class="venue-card">
+                  <div class="venue-card-img">
+                    <img src="{{ $venue->image ? asset('storage/' . $venue->image) : asset('frontend-assets/images/default.jpg') }}"
+                         alt="{{ $venue->venuename }}"
+                         onerror="this.onerror=null;this.src='{{ asset('frontend-assets/images/default.jpg') }}';">
+                  </div>
+                  <div class="venue-card-body">
                     <h5 class="card-title">{{ $venue->venuename }}</h5>
                     <p class="card-text text-muted">
-                      <i class="bi bi-geo-alt"></i> {{ $venue->location }}
-                    </p>
-                    <p class="card-text">
-                      <small class="text-muted">
-                        <i class="bi bi-person"></i> Contact: {{ $venue->contact_person_name }}<br>
-                        <i class="bi bi-telephone"></i> {{ $venue->phone }}
-                      </small>
+                      {{ $venue->location }}<br>
+                      Contact: {{ $venue->contact_person_name }}<br>
+                      {{ $venue->phone }}
                     </p>
                   </div>
-                  <div class="card-footer bg-transparent">
-                    <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#bookingModal" onclick="selectVenue({{ $venue->id }}, '{{ $venue->venuename }}')">Book This Court</button>
-                  </div>
+                  <div class="venue-card-footer d-flex align-items-center justify-content-between">
+                        <span class="venue-card-price fw-bold text-primary" style="font-size: 1.2rem;">Rs. 1300</span>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal" onclick="selectVenue({{ $venue->id }}, '{{ $venue->venuename }}')">
+                            Book Now
+                        </button>
+                    </div>
                 </div>
               </div>
               @endforeach
@@ -356,9 +370,13 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-      function selectVenue(venueId, venueName) {
+      function selectVenue(id, name) {
         const venueSelect = document.getElementById('venue_id');
-        venueSelect.value = venueId;
+        venueSelect.value = id;
+        var venueNameSpan = document.getElementById('modalVenueName');
+        if (venueNameSpan) {
+            venueNameSpan.textContent = name;
+        }
       }
       window.selectVenue = selectVenue; // Make it accessible globally if needed
 
@@ -391,6 +409,79 @@
       });
     });
     </script>
+
+    @push('styles')
+    <style>
+    .venue-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 500px;
+        border-radius: 20px;
+        box-shadow: 0 4px 24px 0 rgba(60,72,88,.08);
+        overflow: hidden;
+        background: #fff;
+        transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .venue-card-img {
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #eaf6f3;
+    }
+    .venue-card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+        display: block;
+    }
+    .venue-card-body {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 32px 28px 24px 28px;
+    }
+    .venue-card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 1.5rem;
+        padding: 0 28px 24px 28px;
+    }
+    .venue-card-price {
+        font-size: 1.2rem;
+        color: #1a73e8;
+        font-weight: bold;
+    }
+    .venue-card-footer .btn {
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 8px;
+    }
+    .featured-venue-card-img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        height: 200px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8f8f8;
+    }
+    .featured-venue-card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 0;
+    }
+    </style>
+    @endpush
 
 </body>
 

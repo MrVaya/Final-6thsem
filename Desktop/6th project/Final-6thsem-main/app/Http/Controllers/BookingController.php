@@ -86,7 +86,7 @@ class BookingController extends Controller
         if (!empty($validated['product_id'])) {
             $product = Product::find($validated['product_id']);
             if ($product) {
-                $totalAmount = $product->price * $validated['quantity'];
+            $totalAmount = $product->price * $validated['quantity'];
             }
         }
 
@@ -153,7 +153,7 @@ class BookingController extends Controller
 
         $booking->update($validated);
 
-        return redirect()->route('admin.bookings.index')->with('success', 'Booking updated successfully.');
+        return redirect()->route('admin.bookings.edit', $booking->id)->with('success', 'Edit successful');
     }
 
     /**

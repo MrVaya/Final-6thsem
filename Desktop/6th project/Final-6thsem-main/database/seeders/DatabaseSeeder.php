@@ -100,27 +100,19 @@ class DatabaseSeeder extends Seeder
         // Create hero sections for Futsal
         $heroSections = [
             [
-                'title' => 'Premium Futsal Courts Available',
-                'subtitle' => 'Book Your Court Today',
-                'description' => 'State-of-the-art futsal courts with modern facilities. Perfect for training, matches, and tournaments.',
+                'title' => 'FUTBOOK',
+                'subtitle' => 'One step away from booking futsal',
+                'description' => 'Book your futsal court easily and quickly with FUTBOOK!',
+                'background_image' => asset('frontend-assets/images/futsal1.jpg'),
                 'cta_text' => 'Book Now',
                 'cta_link' => '#booking',
                 'is_active' => true,
-                'sort_order' => 1
+                'sort_order' => 1,
             ],
-            [
-                'title' => 'Professional Equipment Store',
-                'subtitle' => 'Gear Up for Victory',
-                'description' => 'Get the best futsal equipment and accessories. Quality gear for serious players.',
-                'cta_text' => 'Shop Equipment',
-                'cta_link' => '#equipment',
-                'is_active' => true,
-                'sort_order' => 2
-            ]
         ];
 
         foreach ($heroSections as $heroData) {
-            HeroSection::create($heroData);
+            \App\Models\HeroSection::create($heroData);
         }
 
         // Create futsal courts (venues)

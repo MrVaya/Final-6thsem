@@ -17,7 +17,8 @@ class Tournament extends Model
         'description',
         'image',
         'is_active',
-        'sort_order'
+        'sort_order',
+        'price'
     ];
 
     protected $casts = [
