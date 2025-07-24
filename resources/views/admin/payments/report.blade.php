@@ -95,7 +95,7 @@
                         <li class="d-flex mb-3">
                             <div class="avatar flex-shrink-0 me-3">
                                 <span class="avatar-initial rounded bg-label-{{ $method == 'khalti' ? 'success' : 'primary' }}">
-                                    <i class="bx {{ $method == 'esewa' ? 'bx-wallet' : 'bx-money' }} fs-6"></i>
+                                    <i class="bx {{ $method == 'khalti' ? 'bx-wallet' : 'bx-money' }} fs-6"></i>
                                 </span>
                             </div>
                             <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
