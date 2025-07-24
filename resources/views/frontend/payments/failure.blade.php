@@ -36,7 +36,7 @@
                         
                         <div class="d-flex justify-content-center gap-3">
                             <a href="{{ route('frontend.index') }}" class="btn btn-outline-primary px-4">Back to Home</a>
-                            <a href="{{ route('esewa.initiate', ['bookingId' => $booking->id ?? 0]) }}" class="btn btn-primary px-4">Try Again</a>
+                            <a href="{{ route('khalti.initiate', ['bookingId' => $booking->id ?? 0]) }}" class="btn btn-primary px-4">Try Again</a>
                         </div>
                     </div>
                 </div>
