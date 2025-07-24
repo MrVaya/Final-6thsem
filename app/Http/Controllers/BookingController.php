@@ -137,7 +137,22 @@ class BookingController extends Controller
 
         $booking = Booking::create($validated);
 
-        // Return JSON response for AJAX requests
+        // Handle different payment methods
+        if ($validated['payment_method'] === 'khalti') {
+            // For Khalti payments, redirect to payment page
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Booking created successfully! Redirecting to payment...',
+                    'booking_id' => $booking->id,
+                    'redirect_url' => route('khalti.initiate', ['bookingId' => $booking->id])
+                ]);
+            }
+            
+            return redirect()->route('khalti.initiate', ['bookingId' => $booking->id]);
+        }
+
+        // Return JSON response for AJAX requests (cash payments)
         if ($request->ajax()) {
             return response()->json([
                 'success' => true,
