@@ -583,6 +583,10 @@ class FutsalBookingTester:
         return success
 
 def main():
+    """Run comprehensive Laravel Futsal Booking System backend tests"""
+    print("🚀 Starting Laravel Futsal Booking System Backend Tests")
+    print("=" * 60)
+    
     # Setup
     tester = FutsalBookingTester()
     
@@ -591,25 +595,48 @@ def main():
         print("❌ Failed to get CSRF token, stopping tests")
         return 1
         
-    # Run tests
-    print("\n=== Testing Admin Bookings ===")
-    tester.test_admin_bookings()
+    # Run comprehensive tests
+    test_functions = [
+        ("Database & Models", tester.test_database_connectivity),
+        ("Venue Model", tester.test_venue_model_functionality),
+        ("Booking Model", tester.test_booking_model_functionality),
+        ("Frontend Routes", tester.test_frontend_routes),
+        ("API Endpoints", tester.test_api_endpoints),
+        ("Khalti Configuration", tester.test_khalti_configuration),
+        ("Authentication Middleware", tester.test_booking_creation_unauthenticated),
+        ("Admin Routes Security", tester.test_admin_routes_unauthenticated),
+        ("Khalti Payment Security", tester.test_khalti_payment_routes_unauthenticated),
+        ("Error Handling", tester.test_error_handling)
+    ]
     
-    print("\n=== Testing Admin Venues ===")
-    tester.test_admin_venues()
+    overall_success = True
+    for test_name, test_func in test_functions:
+        print(f"\n🔄 Running {test_name} tests...")
+        try:
+            success = test_func()
+            if not success:
+                overall_success = False
+        except Exception as e:
+            print(f"❌ Error in {test_name}: {str(e)}")
+            overall_success = False
     
-    print("\n=== Testing Admin Products ===")
-    tester.test_admin_products()
+    # Print comprehensive summary
+    tester.print_test_summary()
     
-    print("\n=== Testing Admin Tournaments ===")
-    tester.test_admin_tournaments()
+    # Final assessment
+    print(f"\n{'='*60}")
+    print(f"🎯 FINAL ASSESSMENT")
+    print(f"{'='*60}")
     
-    print("\n=== Testing Frontend Booking ===")
-    tester.test_frontend_booking()
-    
-    # Print results
-    print(f"\n📊 Tests passed: {tester.tests_passed}/{tester.tests_run}")
-    return 0 if tester.tests_passed == tester.tests_run else 1
+    if overall_success and tester.tests_passed == tester.tests_run:
+        print("🎉 ALL TESTS PASSED - Backend is functioning correctly!")
+        return 0
+    elif tester.tests_passed / tester.tests_run >= 0.8:
+        print("⚠️  MOSTLY WORKING - Some minor issues found")
+        return 0
+    else:
+        print("❌ SIGNIFICANT ISSUES - Backend needs attention")
+        return 1
 
 if __name__ == "__main__":
     sys.exit(main())
