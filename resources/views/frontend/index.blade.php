@@ -124,7 +124,7 @@
               <div class="mb-3">
                 <label for="payment_method" class="form-label">Payment Method *</label>
                 <select class="form-select" id="payment_method" name="payment_method" required>
-                  <option value="esewa">eSewa</option>
+                  <option value="khalti">Khalti</option>
                   <option value="cash">Cash on Arrival</option>
                 </select>
               </div>
