@@ -1,6 +1,7 @@
 import requests
 import sys
 import time
+import json
 from datetime import datetime, timedelta
 
 class FutsalBookingTester:
@@ -10,6 +11,7 @@ class FutsalBookingTester:
         self.tests_passed = 0
         self.csrf_token = None
         self.session = requests.Session()
+        self.test_results = []
         
     def run_test(self, name, method, endpoint, expected_status=200, data=None, files=None, headers=None):
         """Run a single API test"""
