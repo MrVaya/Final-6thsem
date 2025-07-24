@@ -18,7 +18,7 @@
                 <div class="card-body p-5">
                     <h3 class="fw-bold text-primary mb-4">Introduction</h3>
                     <p class="text-muted">
-                        At FutsalPro, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, use our services, or interact with us.
+                        At FUTBOOK, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, use our services, or interact with us.
                     </p>
                     <p class="text-muted">
                         By using our services, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, please do not use our services.
@@ -191,7 +191,7 @@
                             <p class="text-muted mb-2"><strong>Phone:</strong> +1 (555) 123-4567</p>
                             <p class="text-muted mb-2"><strong>Address:</strong></p>
                             <p class="text-muted">
-                                FutsalPro Privacy Office<br>
+                                FUTBOOK Privacy Office<br>
                                 123 Sports Complex Drive<br>
                                 Futsal District, FD 12345<br>
                                 United States

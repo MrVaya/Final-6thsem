@@ -24,6 +24,10 @@ class Booking extends Model
         'booking_time',
         'quantity',
         'total_amount',
+        'payment_method',
+        'payment_id',
+        'payment_status',
+        'payment_response',
         'status',
         'notes',
         'admin_notes'

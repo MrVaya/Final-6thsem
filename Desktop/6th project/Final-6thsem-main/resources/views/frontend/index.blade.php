@@ -24,7 +24,10 @@
       </defs>
     </svg>
 
-   
+    <div id="bookingSuccessMsg" class="alert alert-success text-center d-none" role="alert" style="position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:2000;">
+      Booking submitted successfully! We will contact you soon.
+    </div>
+
     <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -118,6 +121,13 @@
                 <label for="notes" class="form-label">Additional Notes</label>
                 <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Any special requirements or notes..."></textarea>
               </div>
+              <div class="mb-3">
+                <label for="payment_method" class="form-label">Payment Method *</label>
+                <select class="form-select" id="payment_method" name="payment_method" required>
+                  <option value="esewa">eSewa</option>
+                  <option value="cash">Cash on Arrival</option>
+                </select>
+              </div>
             </form>
             @else
             <div class="text-center py-5">
@@ -195,9 +205,9 @@
     </section>
 
     <!-- Featured Section with Grid -->
-    <section class="py-5 bg-light">
-      <div class="container-lg">
-        <div class="row g-4 align-items-stretch">
+    <section class="py-5 bg-light mb-0" style="margin-bottom:0 !important; padding-bottom:0 !important;">
+      <div class="container-lg" style="margin-bottom:0 !important; padding-bottom:0 !important;">
+        <div class="row g-4 align-items-stretch" style="margin-bottom:0 !important; padding-bottom:0 !important;">
           <div class="col-lg-6">
             <div class="card h-100 border-0 shadow-lg bg-white">
               <div class="featured-venue-card-img">
@@ -377,8 +387,40 @@
         if (venueNameSpan) {
             venueNameSpan.textContent = name;
         }
+        // Optionally trigger time update
+        updateAvailableTimes();
       }
-      window.selectVenue = selectVenue; // Make it accessible globally if needed
+      window.selectVenue = selectVenue;
+
+      function updateAvailableTimes() {
+        const venueId = document.getElementById('venue_id').value;
+        const dateInput = document.querySelector('input[name="date"], input[name="booking_date"]');
+        const timeSelect = document.querySelector('select[name="time"], select[name="booking_time"]');
+        if (!venueId || !dateInput || !timeSelect) return;
+        const date = dateInput.value;
+        if (!date) return;
+        fetch(`/api/booked-times?venue_id=${venueId}&date=${date}`)
+          .then(res => res.json())
+          .then(data => {
+            const booked = data.booked_times || [];
+            Array.from(timeSelect.options).forEach(opt => {
+              if (booked.includes(opt.value)) {
+                opt.disabled = true;
+                opt.style.color = '#ccc';
+              } else {
+                opt.disabled = false;
+                opt.style.color = '';
+              }
+            });
+          });
+      }
+
+      // Update times when venue or date changes
+      document.getElementById('venue_id')?.addEventListener('change', updateAvailableTimes);
+      document.querySelector('input[name="date"], input[name="booking_date"]')?.addEventListener('change', updateAvailableTimes);
+
+      // Initial update if modal is opened
+      document.getElementById('bookingModal')?.addEventListener('show.bs.modal', updateAvailableTimes);
 
       // Handle booking form submission
       document.getElementById('bookingForm').addEventListener('submit', function(e) {
@@ -395,15 +437,32 @@
         .then(response => response.json())
         .then(data => {
           if (data.success) {
-            alert('Booking submitted successfully! We will contact you soon.');
+            // Show temporary success message
+            const msg = document.getElementById('bookingSuccessMsg');
+            msg.textContent = 'Booking submitted successfully! Redirecting to payment...';
+            msg.classList.remove('d-none');
+            
+            // Hide the booking modal
             bootstrap.Modal.getInstance(document.getElementById('bookingModal')).hide();
+            
+            // Reset the form
             this.reset();
+            
+            // Check payment method and redirect accordingly
+            const paymentMethod = document.getElementById('payment_method').value;
+            if (paymentMethod === 'esewa') {
+              // Redirect to eSewa payment page
+              window.location.href = '/payment/esewa/' + data.booking_id;
+            } else {
+              // For cash payment, show success message without redirection
+              alert('Your booking has been confirmed! You will pay cash on arrival.');
+              window.location.href = '/';
+            }
           } else {
-            alert('There was an error submitting your booking. Please try again.');
+            alert(data.message || 'There was an error submitting your booking. Please try again.');
           }
         })
-        .catch(error => {
-          console.error('Error:', error);
+        .catch(() => {
           alert('There was an error submitting your booking. Please try again.');
         });
       });

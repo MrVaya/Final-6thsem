@@ -1,17 +1,12 @@
 @extends('admin.layouts.app')
 @section('content')
 
-<body>
-  <div class="layout-wrapper layout-content-navbar">
-    <div class="layout-container">
-      <div class="layout-page">
-        <div class="content-wrapper">
-          <div class="container-xxl flex-grow-1 container-p-y">
+<div class="container-xxl flex-grow-1 py-2">
             
             <!-- Header -->
             <div class="row">
               <div class="col-12">
-                <div class="card bg-primary text-white mb-4">
+                <div class="card bg-primary text-white mb-3">
                   <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                       <div>
@@ -31,10 +26,10 @@
             </div>
 
             <!-- Statistics Cards -->
-            <div class="row">
+            <div class="row g-3 mb-3">
              
               
-              <div class="col-lg-3 col-md-6 col-6 mb-4">
+              <div class="col-lg-3 col-md-6 col-6">
                 <div class="card">
                   <div class="card-body">
                     <div class="card-title d-flex align-items-start justify-content-between">
@@ -54,7 +49,7 @@
                 </div>
               </div>
               
-              <div class="col-lg-3 col-md-6 col-6 mb-4">
+              <div class="col-lg-3 col-md-6 col-6">
                 <div class="card">
                   <div class="card-body">
                     <div class="card-title d-flex align-items-start justify-content-between">
@@ -71,7 +66,7 @@
                 </div>
               </div>
               
-              <div class="col-lg-3 col-md-6 col-6 mb-4">
+              <div class="col-lg-3 col-md-6 col-6">
                 <div class="card">
                   <div class="card-body">
                     <div class="card-title d-flex align-items-start justify-content-between">
@@ -87,10 +82,30 @@
                   </div>
                 </div>
               </div>
+
+              <div class="col-lg-3 col-md-6 col-6">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="card-title d-flex align-items-start justify-content-between">
+                      <div class="avatar flex-shrink-0">
+                        <i class="bx bx-credit-card bx-lg text-primary"></i>
+                      </div>
+                      @if(($stats['pending_payments'] ?? 0) > 0)
+                        <span class="badge bg-label-warning rounded-pill">{{ $stats['pending_payments'] }} Pending</span>
+                      @endif
+                    </div>
+                    <span class="fw-semibold d-block mb-1">Total Payments</span>
+                    <h3 class="card-title mb-2">{{ $stats['total_payments'] ?? 0 }}</h3>
+                    <small class="text-primary fw-semibold">
+                      <a href="{{ route('admin.payments.index') }}" class="text-decoration-none">View Payments</a>
+                    </small>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- Recent Bookings -->
-            <div class="row">
+            <div class="row mt-3">
               <div class="col-12">
                 <div class="card">
                   <div class="card-header d-flex justify-content-between align-items-center">
@@ -173,10 +188,6 @@
               </div>
             </div>
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
 
 @endsection

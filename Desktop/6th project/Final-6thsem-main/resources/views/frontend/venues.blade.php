@@ -105,6 +105,13 @@
             <label for="time" class="form-label">Time</label>
             <input type="time" class="form-control" name="time" required>
           </div>
+          <div class="mb-3">
+            <label for="payment_method" class="form-label">Payment Method</label>
+            <select class="form-select" id="payment_method" name="payment_method" required>
+              <option value="esewa">eSewa</option>
+              <option value="cash">Cash on Arrival</option>
+            </select>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Confirm Booking</button>
@@ -125,6 +132,46 @@ function selectVenue(id, name) {
         venueNameSpan.textContent = name;
     }
 }
+
+// Handle booking form submission
+document.addEventListener('DOMContentLoaded', function() {
+    const bookingForm = document.querySelector('#bookingModal form');
+    if (bookingForm) {
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Check payment method and redirect accordingly
+                    const paymentMethod = document.getElementById('payment_method').value;
+                    if (paymentMethod === 'esewa') {
+                        // Redirect to eSewa payment page
+                        window.location.href = '/payment/esewa/' + data.booking_id;
+                    } else {
+                        // For cash payment, show success message without redirection
+                        alert('Your booking has been confirmed! You will pay cash on arrival.');
+                        window.location.href = '/venues';
+                    }
+                } else {
+                    alert(data.message || 'There was an error submitting your booking. Please try again.');
+                }
+            })
+            .catch(() => {
+                alert('There was an error submitting your booking. Please try again.');
+            });
+        });
+    }
+});
 </script>
 @endsection
 

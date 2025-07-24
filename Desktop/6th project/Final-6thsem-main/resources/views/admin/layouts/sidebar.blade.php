@@ -1,4 +1,4 @@
- <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
             <a href="{{ route('admin.dashboard') }}" class="app-brand-link">
               <span class="app-brand-logo demo">
@@ -96,6 +96,26 @@
                 <li class="menu-item {{ request()->routeIs('admin.bookings.create') ? 'active' : '' }}">
                   <a href="{{ route('admin.bookings.create') }}" class="menu-link">
                     <div data-i18n="Add Booking">Add Booking</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Payments Management -->
+            <li class="menu-item {{ request()->routeIs('admin.payments.*') ? 'active open' : '' }}">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-credit-card"></i>
+                <div data-i18n="Payments">Payments</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item {{ request()->routeIs('admin.payments.index') ? 'active' : '' }}">
+                  <a href="{{ route('admin.payments.index') }}" class="menu-link">
+                    <div data-i18n="All Payments">All Payments</div>
+                  </a>
+                </li>
+                <li class="menu-item {{ request()->routeIs('admin.payments.report') ? 'active' : '' }}">
+                  <a href="{{ route('admin.payments.report') }}" class="menu-link">
+                    <div data-i18n="Payment Reports">Payment Reports</div>
                   </a>
                 </li>
               </ul>

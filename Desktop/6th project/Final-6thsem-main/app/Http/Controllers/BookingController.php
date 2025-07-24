@@ -78,22 +78,62 @@ class BookingController extends Controller
             'booking_date' => 'required|date|after_or_equal:today',
             'booking_time' => 'required|date_format:H:i',
             'quantity' => 'required|integer|min:1',
+            'payment_method' => 'required|in:esewa,cash',
             'notes' => 'nullable|string'
         ]);
 
-        // Calculate total amount based on product price
+        // Calculate total amount based on venue price
         $totalAmount = 0;
-        if (!empty($validated['product_id'])) {
+        if (!empty($validated['venue_id'])) {
+            $venue = Venue::find($validated['venue_id']);
+            if ($venue && isset($venue->price)) {
+                $totalAmount = $venue->price * $validated['quantity'];
+            }
+        }
+        
+        // If venue has no price or total amount is still 0, try to use product price as fallback
+        if ($totalAmount == 0 && !empty($validated['product_id'])) {
             $product = Product::find($validated['product_id']);
             if ($product) {
-            $totalAmount = $product->price * $validated['quantity'];
+                $totalAmount = $product->price * $validated['quantity'];
             }
+        }
+        
+        // Set a default price if still 0
+        if ($totalAmount == 0) {
+            $totalAmount = 1000.00 * $validated['quantity']; // Default price of 1000 per hour
         }
 
         // Combine booking_date and booking_time
-        $validated['booking_time'] = $validated['booking_date'] . ' ' . $validated['booking_time'];
+        $bookingDate = $validated['booking_date'];
+        $bookingTime = $validated['booking_time'];
+        $venueId = $validated['venue_id'] ?? null;
+        $datetime = $bookingDate . ' ' . $bookingTime;
+
+        // Prevent duplicate booking for same venue, date, and time
+        $exists = \App\Models\Booking::where('venue_id', $venueId)
+            ->whereDate('booking_time', $bookingDate)
+            ->whereTime('booking_time', $bookingTime)
+            ->exists();
+        if ($exists) {
+            $errorMsg = 'This time slot is already booked for the selected venue.';
+            if ($request->ajax()) {
+                return response()->json(['success' => false, 'message' => $errorMsg], 422);
+            }
+            return redirect()->back()->withErrors(['booking_time' => $errorMsg])->withInput();
+        }
+
+        $validated['booking_time'] = $datetime;
         $validated['total_amount'] = $totalAmount;
-        $validated['status'] = Booking::STATUS_PENDING;
+        
+        // Set status based on payment method
+        if ($validated['payment_method'] === 'cash') {
+            $validated['status'] = Booking::STATUS_CONFIRMED;
+            $validated['payment_status'] = 'completed';
+        } else {
+            $validated['status'] = Booking::STATUS_PENDING;
+            $validated['payment_status'] = 'pending';
+        }
 
         $booking = Booking::create($validated);
 
@@ -186,5 +226,20 @@ class BookingController extends Controller
     public function getPendingCount()
     {
         return Booking::pending()->count();
+    }
+
+    /**
+     * Get booked times for a venue and date (AJAX endpoint)
+     */
+    public function getBookedTimes(Request $request)
+    {
+        $venueId = $request->input('venue_id');
+        $date = $request->input('date');
+        $bookedTimes = \App\Models\Booking::where('venue_id', $venueId)
+            ->whereDate('booking_time', $date)
+            ->pluck('booking_time')
+            ->map(function($dt) { return date('H:i', strtotime($dt)); })
+            ->toArray();
+        return response()->json(['booked_times' => $bookedTimes]);
     }
 }

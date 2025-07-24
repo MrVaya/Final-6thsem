@@ -28,6 +28,12 @@ class AdminDashboardController extends Controller
             'monthly_revenue' => Booking::where('status', 'completed')
                 ->whereMonth('created_at', Carbon::now()->month)
                 ->sum('total_amount'),
+            // Payment statistics
+            'total_payments' => Booking::whereNotNull('payment_method')->count(),
+            'completed_payments' => Booking::where('payment_status', 'completed')->count(),
+            'pending_payments' => Booking::where('payment_status', 'pending')->count(),
+            'failed_payments' => Booking::where('payment_status', 'failed')->count(),
+            'esewa_payments' => Booking::where('payment_method', 'esewa')->count(),
         ];
 
         // Recent bookings

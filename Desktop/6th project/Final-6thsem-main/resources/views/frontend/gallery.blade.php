@@ -40,7 +40,7 @@
                         <img src="https://images.pexels.com/photos/6077792/pexels-photo-6077792.jpeg" class="card-img-top" alt="Main Facility" style="height: 250px; object-fit: cover;">
                         <div class="card-body p-3">
                             <h6 class="fw-bold text-primary mb-1">Main Facility Entrance</h6>
-                            <p class="text-muted small mb-0">Welcome to FutsalPro's premier location</p>
+                            <p class="text-muted small mb-0">Welcome to FUTBOOK's premier location</p>
                         </div>
                     </div>
                 </div>

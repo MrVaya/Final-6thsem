@@ -6,7 +6,7 @@
     <div class="row mb-5">
         <div class="col-12 text-center">
             <h1 class="display-4 fw-bold text-primary mb-3">Terms & Conditions</h1>
-            <p class="lead text-muted">Terms of service for using FutsalPro facilities and services</p>
+            <p class="lead text-muted">Terms of service for using FUTBOOK facilities and services</p>
             <p class="text-muted">Last updated: January 1, 2025</p>
         </div>
     </div>
@@ -18,10 +18,10 @@
                 <div class="card-body p-5">
                     <h3 class="fw-bold text-primary mb-4">Agreement to Terms</h3>
                     <p class="text-muted">
-                        Welcome to FutsalPro. These Terms and Conditions ("Terms") govern your use of our facilities, services, and website. By accessing our facilities or using our services, you agree to be bound by these Terms. If you do not agree with any part of these Terms, please do not use our services.
+                        Welcome to FUTBOOK. These Terms and Conditions ("Terms") govern your use of our facilities, services, and website. By accessing our facilities or using our services, you agree to be bound by these Terms. If you do not agree with any part of these Terms, please do not use our services.
                     </p>
                     <p class="text-muted">
-                        FutsalPro reserves the right to modify these Terms at any time. Changes will be effective immediately upon posting on our website. Your continued use of our services after any changes constitutes acceptance of the new Terms.
+                        FUTBOOK reserves the right to modify these Terms at any time. Changes will be effective immediately upon posting on our website. Your continued use of our services after any changes constitutes acceptance of the new Terms.
                     </p>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                         <li>Cancellations within 24 hours: 50% charge</li>
                         <li>No-shows: Full charge</li>
                         <li>Refunds will be processed within 5-7 business days</li>
-                        <li>Weather-related cancellations by FutsalPro will receive full refunds</li>
+                        <li>Weather-related cancellations by FUTBOOK will receive full refunds</li>
                     </ul>
                 </div>
             </div>
@@ -110,7 +110,7 @@
 
                     <h5 class="fw-bold text-primary mb-3">Limitation of Liability</h5>
                     <p class="text-muted mb-3">
-                        FutsalPro's liability is limited to the maximum extent permitted by law. We are not liable for:
+                        FUTBOOK's liability is limited to the maximum extent permitted by law. We are not liable for:
                     </p>
                     <ul class="text-muted mb-4">
                         <li>Personal injury or property damage during use of facilities</li>
@@ -133,7 +133,7 @@
                     
                     <h5 class="fw-bold text-primary mb-3">Facility Equipment</h5>
                     <ul class="text-muted mb-4">
-                        <li>Goals, nets, and court markings are provided and maintained by FutsalPro</li>
+                        <li>Goals, nets, and court markings are provided and maintained by FUTBOOK</li>
                         <li>Damage to facility equipment may result in repair charges</li>
                         <li>Equipment rental items must be returned in good condition</li>
                         <li>Lost or damaged rental equipment will incur replacement fees</li>
@@ -141,7 +141,7 @@
 
                     <h5 class="fw-bold text-primary mb-3">Personal Property</h5>
                     <ul class="text-muted">
-                        <li>FutsalPro is not responsible for lost, stolen, or damaged personal items</li>
+                        <li>FUTBOOK is not responsible for lost, stolen, or damaged personal items</li>
                         <li>Lockers are provided for convenience but are not guaranteed secure</li>
                         <li>Valuable items should not be left unattended</li>
                         <li>Lost and found items will be held for 30 days before disposal</li>
@@ -170,7 +170,7 @@
                 <div class="card-body p-5">
                     <h3 class="fw-bold text-primary mb-4">Intellectual Property</h3>
                     <p class="text-muted mb-3">
-                        All content on our website and in our facilities, including logos, text, images, and designs, is the property of FutsalPro or our licensors. You may not:
+                        All content on our website and in our facilities, including logos, text, images, and designs, is the property of FUTBOOK or our licensors. You may not:
                     </p>
                     <ul class="text-muted">
                         <li>Reproduce, distribute, or display our content without permission</li>
@@ -186,7 +186,7 @@
                 <div class="card-body p-5">
                     <h3 class="fw-bold text-primary mb-4">Termination of Services</h3>
                     
-                    <h5 class="fw-bold text-primary mb-3">By FutsalPro</h5>
+                    <h5 class="fw-bold text-primary mb-3">By FUTBOOK</h5>
                     <p class="text-muted mb-3">We reserve the right to terminate or suspend services for:</p>
                     <ul class="text-muted mb-4">
                         <li>Violation of these Terms or facility rules</li>

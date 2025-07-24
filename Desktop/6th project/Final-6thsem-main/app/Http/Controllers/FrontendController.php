@@ -115,4 +115,30 @@ class FrontendController extends Controller
         $tournaments = \App\Models\Tournament::all();
         return view('frontend.tournaments', compact('tournaments'));
     }
-} 
+    
+    /**
+     * Display booking success page
+     */
+    public function bookingSuccess($id)
+    {
+        $booking = \App\Models\Booking::with(['venue'])->findOrFail($id);
+        
+        // Only show success page if payment is completed
+        if ($booking->payment_status !== 'completed') {
+            return redirect()->route('frontend.index')
+                ->with('error', 'Invalid booking status.');
+        }
+        
+        return view('frontend.payments.success', compact('booking'));
+    }
+    
+    /**
+     * Display booking failure page
+     */
+    public function bookingFailure($id)
+    {
+        $booking = \App\Models\Booking::with(['venue'])->findOrFail($id);
+        
+        return view('frontend.payments.failure', compact('booking'));
+    }
+}

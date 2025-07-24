@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Call the VenuePriceSeeder
+        $this->call(VenuePriceSeeder::class);
+        
         // Create tournaments for Futsal
         $tournaments = [
             [
