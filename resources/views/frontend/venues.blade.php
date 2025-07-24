@@ -154,9 +154,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success) {
                     // Check payment method and redirect accordingly
                     const paymentMethod = document.getElementById('payment_method').value;
-                    if (paymentMethod === 'esewa') {
-                        // Redirect to eSewa payment page
-                        window.location.href = '/payment/esewa/' + data.booking_id;
+                    if (paymentMethod === 'khalti') {
+                        // Redirect to Khalti payment
+                        window.location.href = '/payment/khalti/' + data.booking_id;
                     } else {
                         // For cash payment, show success message without redirection
                         alert('Your booking has been confirmed! You will pay cash on arrival.');
