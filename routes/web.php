@@ -25,12 +25,15 @@ Route::post('/book-now', [BookingController::class, 'storeFromFrontend'])
     ->middleware(['auth'])
     ->name('frontend.booking.store');
 
-// eSewa Payment Routes
-Route::get('/payment/esewa/{bookingId}', [EsewaPaymentController::class, 'initiatePayment'])
+// Khalti Payment Routes
+Route::get('/payment/khalti/{bookingId}', [KhaltiPaymentController::class, 'initiatePayment'])
     ->middleware(['auth'])
-    ->name('esewa.initiate');
-Route::get('/payment/esewa/success', [EsewaPaymentController::class, 'success'])->name('esewa.success');
-Route::get('/payment/esewa/failure', [EsewaPaymentController::class, 'failure'])->name('esewa.failure');
+    ->name('khalti.initiate');
+Route::post('/payment/khalti/verify', [KhaltiPaymentController::class, 'verifyPayment'])
+    ->middleware(['auth'])
+    ->name('khalti.verify');
+Route::get('/payment/khalti/success', [KhaltiPaymentController::class, 'success'])->name('khalti.success');
+Route::get('/payment/khalti/failure', [KhaltiPaymentController::class, 'failure'])->name('khalti.failure');
 Route::get('/booking/success/{id}', [FrontendController::class, 'bookingSuccess'])->name('frontend.booking.success');
 Route::get('/booking/failure/{id}', [FrontendController::class, 'bookingFailure'])->name('frontend.booking.failure');
 
