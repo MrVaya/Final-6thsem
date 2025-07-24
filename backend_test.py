@@ -15,7 +15,7 @@ class FutsalBookingTester:
         
     def run_test(self, name, method, endpoint, expected_status=200, data=None, files=None, headers=None):
         """Run a single API test"""
-        url = f"{self.base_url}/{endpoint}"
+        url = f"{self.base_url}/{endpoint}" if endpoint else self.base_url
         
         if headers is None:
             headers = {}
@@ -38,17 +38,39 @@ class FutsalBookingTester:
                 
             success = response.status_code == expected_status
             
+            result = {
+                'name': name,
+                'method': method,
+                'endpoint': endpoint,
+                'expected_status': expected_status,
+                'actual_status': response.status_code,
+                'success': success,
+                'response_size': len(response.text) if response.text else 0
+            }
+            
             if success:
                 self.tests_passed += 1
                 print(f"✅ Passed - Status: {response.status_code}")
             else:
                 print(f"❌ Failed - Expected {expected_status}, got {response.status_code}")
                 print(f"Response: {response.text[:500]}")
+                result['error'] = response.text[:500]
                 
+            self.test_results.append(result)
             return success, response
             
         except Exception as e:
             print(f"❌ Failed - Error: {str(e)}")
+            result = {
+                'name': name,
+                'method': method,
+                'endpoint': endpoint,
+                'expected_status': expected_status,
+                'actual_status': 'ERROR',
+                'success': False,
+                'error': str(e)
+            }
+            self.test_results.append(result)
             return False, None
             
     def get_csrf_token(self):
