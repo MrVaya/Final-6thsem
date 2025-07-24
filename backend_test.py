@@ -36,7 +36,11 @@ class FutsalBookingTester:
             elif method == 'DELETE':
                 response = self.session.delete(url, headers=headers)
                 
-            success = response.status_code == expected_status
+            # Handle multiple expected status codes
+            if isinstance(expected_status, list):
+                success = response.status_code in expected_status
+            else:
+                success = response.status_code == expected_status
             
             result = {
                 'name': name,
