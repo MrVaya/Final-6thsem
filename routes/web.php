@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\EsewaPaymentController;
+use App\Http\Controllers\KhaltiPaymentController;
 
 // Frontend Routes
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.home');
