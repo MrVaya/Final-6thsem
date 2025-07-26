@@ -125,7 +125,7 @@
                 <label for="payment_method" class="form-label">Payment Method *</label>
                 <select class="form-select" id="payment_method" name="payment_method" required>
                   <option value="esewa">eSewa</option>
-                  <option value="cash">Cash on Arrival</option>
+                 
                 </select>
               </div>
             </form>
@@ -453,11 +453,12 @@
             if (paymentMethod === 'esewa') {
               // Redirect to eSewa payment page
               window.location.href = '/payment/esewa/' + data.booking_id;
-            } else {
-              // For cash payment, show success message without redirection
+            } else if (paymentMethod === 'cash') {
+              // For cash payment, show success message only (no redirect)
               alert('Your booking has been confirmed! You will pay cash on arrival.');
-              window.location.href = '/';
+              // Optionally, you can keep the user on the same page or reload if needed
             }
+            // For Khalti, do nothing here (handled by Khalti button/flow)
           } else {
             alert(data.message || 'There was an error submitting your booking. Please try again.');
           }
@@ -468,7 +469,95 @@
       });
     });
     </script>
-
+    <script src="https://khalti.com/static/khalti-checkout.js"></script>
+<script>
+    var khaltiConfig = {
+        publicKey: "{{ env('KHALTI_PUBLIC_KEY') }}",
+        productIdentity: "COURT123",
+        productName: "Court Booking",
+        productUrl: "http://localhost",
+        eventHandler: {
+            onSuccess(payload) {
+                fetch("/verify-khalti-payment", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name=\"csrf-token\"]').getAttribute("content")
+                    },
+                    body: JSON.stringify({
+                        token: payload.token,
+                        amount: payload.amount,
+                        court_id: document.getElementById('venue_id') ? document.getElementById('venue_id').value : 1
+                    })
+                })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        alert("Payment Successful!");
+                        window.location.reload();
+                    } else {
+                        alert("Payment Failed: " + JSON.stringify(res.error));
+                    }
+                });
+            },
+            onError(error) {
+                alert("Something went wrong!");
+                console.log(error);
+            }
+        }
+    };
+    var checkout = new KhaltiCheckout(khaltiConfig);
+    document.addEventListener('DOMContentLoaded', function() {
+        var bookNowBtns = document.querySelectorAll(".btn-success[data-bs-target='#bookingModal']");
+        bookNowBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                setTimeout(function() {
+                    var bookingForm = document.getElementById('bookingForm');
+                    if (bookingForm) {
+                        // Remove any existing Khalti button
+                        var oldBtn = document.getElementById('bookNowBtnKhalti');
+                        if (oldBtn) oldBtn.remove();
+                        // Hide the default submit button initially
+                        var defaultBtn = document.querySelector('button[form="bookingForm"]');
+                        if (defaultBtn) defaultBtn.style.display = 'inline-block';
+                        // Payment method logic
+                        var paymentMethod = document.getElementById('payment_method');
+                        function toggleKhaltiButton() {
+                            if (paymentMethod.value === 'khalti') {
+                                // Hide default submit button
+                                if (defaultBtn) defaultBtn.style.display = 'none';
+                                // Add Khalti button if not present
+                                if (!document.getElementById('bookNowBtnKhalti')) {
+                                    var payBtn = document.createElement('button');
+                                    payBtn.type = 'button';
+                                    payBtn.className = 'btn btn-primary mt-3';
+                                    payBtn.id = 'bookNowBtnKhalti';
+                                    payBtn.innerText = 'Pay with Khalti';
+                                    bookingForm.appendChild(payBtn);
+                                    payBtn.onclick = function() {
+                                        var amount = 1000; // Default
+                                        var amountInput = document.getElementById('total_amount');
+                                        if(amountInput && amountInput.value) amount = parseInt(amountInput.value * 100);
+                                        checkout.show({ amount: amount });
+                                    }
+                                }
+                            } else {
+                                // Show default submit button
+                                if (defaultBtn) defaultBtn.style.display = 'inline-block';
+                                // Remove Khalti button if present
+                                var oldBtn = document.getElementById('bookNowBtnKhalti');
+                                if (oldBtn) oldBtn.remove();
+                            }
+                        }
+                        paymentMethod.addEventListener('change', toggleKhaltiButton);
+                        // Initial call
+                        toggleKhaltiButton();
+                    }
+                }, 500);
+            });
+        });
+    });
+</script>
     @push('styles')
     <style>
     .venue-card {

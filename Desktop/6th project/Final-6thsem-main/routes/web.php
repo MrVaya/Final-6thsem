@@ -5,6 +5,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\EsewaPaymentController;
+use App\Http\Controllers\KhaltiPaymentController;
 
 // Frontend Routes
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.home');
@@ -65,6 +66,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Additional booking routes
     Route::patch('bookings/{booking}/status', [BookingController::class, 'updateStatus'])->name('bookings.status');
 });
+
+// Khalti Payment Verification Route
+Route::post('/verify-khalti-payment', [KhaltiPaymentController::class, 'verifyPayment']);
 
 // Legacy routes for backwards compatibility
 Route::resource('venue', 'App\Http\Controllers\VenueController');

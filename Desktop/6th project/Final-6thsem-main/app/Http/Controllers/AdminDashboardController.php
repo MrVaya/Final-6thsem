@@ -24,9 +24,8 @@ class AdminDashboardController extends Controller
             'total_bookings' => Booking::count(),
             'pending_bookings' => Booking::pending()->count(),
             'confirmed_bookings' => Booking::confirmed()->count(),
-            'total_revenue' => Booking::where('status', 'completed')->sum('total_amount'),
-            'monthly_revenue' => Booking::where('status', 'completed')
-                ->whereMonth('created_at', Carbon::now()->month)
+            'total_revenue' => Booking::sum('total_amount'),
+            'monthly_revenue' => Booking::whereMonth('created_at', Carbon::now()->month)
                 ->sum('total_amount'),
             // Payment statistics
             'total_payments' => Booking::whereNotNull('payment_method')->count(),

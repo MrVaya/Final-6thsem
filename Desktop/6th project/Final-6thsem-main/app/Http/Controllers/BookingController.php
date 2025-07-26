@@ -78,7 +78,7 @@ class BookingController extends Controller
             'booking_date' => 'required|date|after_or_equal:today',
             'booking_time' => 'required|date_format:H:i',
             'quantity' => 'required|integer|min:1',
-            'payment_method' => 'required|in:esewa,cash',
+            'payment_method' => 'required|in:esewa,cash,khalti',
             'notes' => 'nullable|string'
         ]);
 

@@ -1,6 +1,160 @@
 @extends('admin.layouts.app')
 @section('content')
 
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    min-height: 100vh;
+    background: #f5f7fa;
+  }
+  .layout-wrapper {
+    min-height: 100vh;
+    display: flex;
+  }
+  .layout-container {
+    flex: 1;
+    display: flex;
+    min-height: 100vh;
+  }
+  .layout-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f5f7fa;
+  }
+  .content-wrapper {
+    flex: 1;
+    background: #fff;
+    min-height: 100vh;
+    box-shadow: 0 0 24px #e9ecef;
+    border-radius: 0 0 0 0;
+    margin: 0;
+  }
+  .summary-banner {
+    background: #6c63ff;
+    color: #fff;
+    border-radius: 16px;
+    padding: 32px 32px 24px 32px;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 24px #e9ecef;
+  }
+  .summary-banner h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .summary-banner .pending {
+    font-weight: 600;
+    color: #ffe082;
+  }
+  .summary-banner .revenue {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: right;
+  }
+  .summary-cards {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .summary-card {
+    flex: 1 1 220px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #e9ecef;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 200px;
+  }
+  .summary-card .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .summary-card .card-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .summary-card .card-link {
+    color: #6c63ff;
+    font-size: 0.95rem;
+    text-decoration: underline;
+    margin-top: 8px;
+  }
+  .recent-bookings-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #e9ecef;
+    padding: 24px 20px;
+    margin-bottom: 32px;
+  }
+  .recent-bookings-card h5 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .recent-bookings-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+  }
+  .recent-bookings-table th {
+    color: #888;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+  }
+  .recent-bookings-table td {
+    font-size: 1rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 10px 8px;
+    vertical-align: middle;
+  }
+  .badge-status {
+    background: #ffe082;
+    color: #b28704;
+    border-radius: 8px;
+    padding: 2px 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .container-xxl {
+    max-width: 100vw;
+    width: 100%;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  @media (min-width: 1200px) {
+    .container-xxl {
+      max-width: 100vw;
+      width: 100%;
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+  @media (max-width: 991px) {
+    .summary-cards {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+</style>
+
 <body>
   <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
@@ -8,85 +162,91 @@
         <div class="content-wrapper">
           <div class="container-xxl flex-grow-1 container-p-y">
             
-            <!-- Header -->
-            <div class="row">
-              <div class="col-12">
-                <div class="card mb-4">
-                  <div class="card-header d-flex justify-content-between align-items-center">
-                    <div>
-                      <h4 class="card-title mb-0">Booking Management</h4>
-                      <p class="text-muted mb-0">Manage all customer bookings and requests</p>
-                    </div>
-                    <div>
-                      <a href="{{ route('admin.bookings.create') }}" class="btn btn-primary">
-                        <i class="bx bx-plus me-1"></i> Add New Booking
-                      </a>
-                    </div>
-                  </div>
-                </div>
+            <!-- Summary Banner -->
+            <div class="summary-banner">
+              <div>
+                <h2>Welcome to FUTBOOK 🎉</h2>
+                <div>You have <span class="pending">{{ $bookings->where('status', 'pending')->count() }} pending bookings</span> to review today.</div>
+              </div>
+              <div class="revenue">
+                Rs.{{ number_format($bookings->sum('total_amount'), 2) }}<br>
+                <span style="font-size:1rem;font-weight:400;opacity:0.8;">This Month's Revenue</span>
               </div>
             </div>
 
-            <!-- Statistics Cards -->
-            <div class="row mb-4">
-              <div class="col-lg-3 col-md-6 col-6 mb-3">
-                <div class="card">
-                  <div class="card-body text-center">
-                    <div class="avatar mx-auto mb-2">
-                      <span class="avatar-initial rounded bg-label-warning">
-                        <i class="bx bx-time bx-sm"></i>
-                      </span>
-                    </div>
-                    <h4 class="mb-1">{{ $bookings->where('status', 'pending')->count() }}</h4>
-                    <p class="mb-0">Pending</p>
-                  </div>
-                </div>
+            <!-- Summary Cards -->
+            <div class="summary-cards">
+              <div class="summary-card">
+                <div class="card-title"><i class="bx bx-calendar"></i> Total Bookings</div>
+                <div class="card-value">{{ $bookings->count() }}</div>
+                <span class="badge-status">{{ $bookings->where('status', 'pending')->count() }} PENDING</span>
+                <a href="{{ route('admin.bookings.index') }}" class="card-link">View Bookings</a>
               </div>
-              <div class="col-lg-3 col-md-6 col-6 mb-3">
-                <div class="card">
-                  <div class="card-body text-center">
-                    <div class="avatar mx-auto mb-2">
-                      <span class="avatar-initial rounded bg-label-success">
-                        <i class="bx bx-check bx-sm"></i>
-                      </span>
-                    </div>
-                    <h4 class="mb-1">{{ $bookings->where('status', 'confirmed')->count() }}</h4>
-                    <p class="mb-0">Confirmed</p>
-                  </div>
-                </div>
+              <div class="summary-card">
+                <div class="card-title"><i class="bx bx-grid-alt"></i> Tournaments</div>
+                <div class="card-value">3</div>
+                <a href="#" class="card-link">Manage Tournaments</a>
               </div>
-              <div class="col-lg-3 col-md-6 col-6 mb-3">
-                <div class="card">
-                  <div class="card-body text-center">
-                    <div class="avatar mx-auto mb-2">
-                      <span class="avatar-initial rounded bg-label-info">
-                        <i class="bx bx-check-circle bx-sm"></i>
-                      </span>
-                    </div>
-                    <h4 class="mb-1">{{ $bookings->where('status', 'completed')->count() }}</h4>
-                    <p class="mb-0">Completed</p>
-                  </div>
-                </div>
+              <div class="summary-card">
+                <div class="card-title"><i class="bx bx-dollar"></i> Total Revenue</div>
+                <div class="card-value">Rs.{{ number_format($bookings->sum('total_amount'), 2) }}</div>
+                <span style="color:#4caf50;font-size:0.95rem;">↑ From {{ $bookings->where('status','completed')->count() }} completed bookings</span>
               </div>
-              <div class="col-lg-3 col-md-6 col-6 mb-3">
-                <div class="card">
-                  <div class="card-body text-center">
-                    <div class="avatar mx-auto mb-2">
-                      <span class="avatar-initial rounded bg-label-danger">
-                        <i class="bx bx-x bx-sm"></i>
-                      </span>
-                    </div>
-                    <h4 class="mb-1">{{ $bookings->where('status', 'cancelled')->count() }}</h4>
-                    <p class="mb-0">Cancelled</p>
-                  </div>
+              <div class="summary-card">
+                <div class="card-title"><i class="bx bx-credit-card"></i> Total Payments</div>
+                <div class="card-value">4</div>
+                <span class="badge-status">4 PENDING</span>
+                <a href="#" class="card-link">View Payments</a>
+              </div>
+            </div>
+
+            <!-- Recent Bookings Card -->
+            <div class="recent-bookings-card">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <div>
+                  <h5>Recent Bookings</h5>
+                  <div class="text-muted small">Latest booking requests</div>
                 </div>
+                <a href="{{ route('admin.bookings.index') }}" class="btn btn-outline-primary btn-sm">View All</a>
+              </div>
+              <div class="table-responsive">
+                <table class="recent-bookings-table">
+                  <thead>
+                    <tr>
+                      <th>Customer</th>
+                      <th>Product</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($bookings->take(5) as $booking)
+                    <tr>
+                      <td>
+                        <div class="d-flex flex-column">
+                          <span class="fw-semibold">{{ $booking->customer_name }}</span>
+                          <small class="text-muted">{{ $booking->customer_email }}</small>
+                        </div>
+                      </td>
+                      <td>{{ $booking->product ? $booking->product->name : 'General Booking' }}</td>
+                      <td>Rs.{{ number_format($booking->total_amount, 2) }}</td>
+                      <td><span class="badge-status">{{ strtoupper($booking->status) }}</span></td>
+                      <td>{{ $booking->created_at->format('M j, Y') }}</td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
               </div>
             </div>
 
             <!-- Bookings Table -->
             <div class="card">
-              <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0">All Bookings</h5>
+              <div class="card-header d-flex flex-column flex-lg-row justify-content-between align-items-lg-center align-items-start gap-3">
+                <div>
+                  <h5 class="card-title mb-0">All Bookings</h5>
+                  <div class="text-muted small mt-1">Total Revenue: <span class="fw-bold text-success">Rs.{{ number_format($bookings->sum('total_amount'), 2) }}</span></div>
+                </div>
                 <div class="d-flex gap-2">
                   <!-- Filter by Status -->
                   <select class="form-select form-select-sm" id="statusFilter" style="width: auto;">
@@ -155,7 +315,7 @@
                             </div>
                           </td>
                           <td>
-                            <span class="fw-medium">${{ number_format($booking->total_amount, 2) }}</span>
+                            <span class="fw-medium">Rs.{{ number_format($booking->total_amount, 2) }}</span>
                           </td>
                           <td>
                             <span class="badge bg-label-{{ $booking->status_color }}">

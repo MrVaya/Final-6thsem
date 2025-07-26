@@ -91,7 +91,7 @@
                             @foreach($products as $product)
                               <option value="{{ $product->id }}" data-price="{{ $product->price }}" 
                                       {{ old('product_id') == $product->id ? 'selected' : '' }}>
-                                {{ $product->name }} - ${{ number_format($product->price, 2) }}
+                                {{ $product->name }} - NPR {{ number_format($product->price, 2) }}
                               </option>
                             @endforeach
                           </select>
@@ -149,7 +149,7 @@
                         <div class="col-md-6">
                           <label class="form-label" for="total_amount">Total Amount *</label>
                           <div class="input-group">
-                            <span class="input-group-text">$</span>
+                            <span class="input-group-text">NPR</span>
                             <input type="number" class="form-control @error('total_amount') is-invalid @enderror" 
                                    id="total_amount" name="total_amount" value="{{ old('total_amount') }}" 
                                    step="0.01" min="0" required>
@@ -203,7 +203,7 @@
 
               <!-- Sidebar Info -->
               <div class="col-xl-4 col-lg-5 col-md-5">
-                <div class="card">
+                <div class="card mb-4">
                   <div class="card-header">
                     <h5 class="card-title mb-0">Booking Guidelines</h5>
                   </div>
@@ -221,7 +221,7 @@
                       </ul>
                     </div>
 
-                    <div class="border rounded p-3 bg-light">
+                    <div class="border rounded p-3 bg-light mb-4">
                       <h6 class="mb-2">Status Definitions:</h6>
                       <div class="d-flex align-items-center mb-2">
                         <span class="badge bg-label-warning me-2">Pending</span>
@@ -240,6 +240,13 @@
                         <small>Booking cancelled</small>
                       </div>
                     </div>
+
+                    <!-- Decorative Illustration to cover empty space -->
+                    <div class="text-center mt-4">
+                      <img src="https://undraw.co/api/illustrations/booking.svg" alt="Booking Illustration" style="max-width: 220px; width: 100%; margin-bottom: 12px;">
+                      <div style="color: #5f6fff; font-size: 15px; font-weight: 500;">Manage your bookings efficiently and grow your business!</div>
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -272,6 +279,56 @@
       productSelect.addEventListener('change', calculateTotal);
       quantityInput.addEventListener('input', calculateTotal);
     });
+  </script>
+
+  <!-- Khalti Checkout integration script -->
+  <script src="https://khalti.com/static/khalti-checkout.js"></script>
+  <script>
+      var khaltiConfig = {
+          publicKey: "{{ env('KHALTI_PUBLIC_KEY') }}",
+          productIdentity: "COURT123",
+          productName: "Court Booking",
+          productUrl: "http://localhost",
+          eventHandler: {
+              onSuccess(payload) {
+                  fetch("/verify-khalti-payment", {
+                      method: "POST",
+                      headers: {
+                          "Content-Type": "application/json",
+                          "X-CSRF-TOKEN": document.querySelector('meta[name=\"csrf-token\"]').getAttribute("content")
+                      },
+                      body: JSON.stringify({
+                          token: payload.token,
+                          amount: payload.amount,
+                          court_id: 1 // Replace with actual court ID if needed
+                      })
+                  })
+                  .then(res => res.json())
+                  .then(res => {
+                      if (res.success) {
+                          alert("Payment Successful!");
+                          window.location.href = "/admin/bookings";
+                      } else {
+                          alert("Payment Failed: " + JSON.stringify(res.error));
+                      }
+                  });
+              },
+              onError(error) {
+                  alert("Something went wrong!");
+                  console.log(error);
+              }
+          }
+      };
+      var checkout = new KhaltiCheckout(khaltiConfig);
+      document.addEventListener('DOMContentLoaded', function() {
+          var btn = document.getElementById("bookNowBtn");
+          if(btn) {
+              btn.onclick = function () {
+                  var amount = document.getElementById('total_amount').value || 1000;
+                  checkout.show({ amount: parseInt(amount * 100) }); // amount in paisa
+              }
+          }
+      });
   </script>
 
 @endsection

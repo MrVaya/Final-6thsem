@@ -52,8 +52,8 @@
         
         <!-- eSewa Form -->
         <form action="{{ $esewaUrl }}" method="POST" id="esewa-payment-form">
-            <input value="{{ $params['tAmt'] }}" name="tAmt" type="hidden">
-            <input value="{{ $params['amt'] }}" name="amt" type="hidden">
+            <input value="{{ $params['tAmt'] }}" name="amount" type="hidden">
+            <input value="{{ $params['amt'] }}" name="amount" type="hidden">
             <input value="{{ $params['txAmt'] }}" name="txAmt" type="hidden">
             <input value="{{ $params['psc'] }}" name="psc" type="hidden">
             <input value="{{ $params['pdc'] }}" name="pdc" type="hidden">
@@ -62,6 +62,20 @@
             <input value="{{ $params['su'] }}" type="hidden" name="su">
             <input value="{{ $params['fu'] }}" type="hidden" name="fu">
             <button type="submit" class="btn btn-primary" id="manual-submit" style="display: none;">Proceed to eSewa</button>
+        </form>
+        <form action="{{ $esewaUrl }}" method="POST" id="esewa-payment-form">
+            <input type="hidden" id="amount" name="amount" value="{{ $params['amount'] }}" required>
+            <input type="hidden" id="tax_amount" name="tax_amount" value ="{{ $params['amount'] }}" required>
+            <input type="hidden" id="total_amount" name="total_amount" value="{{ $params['amount'] }}" required>
+            <input type="hidden" id="transaction_uuid" name="transaction_uuid" value="{{ $params['amount'] }}" required>
+            <input type="hidden" id="product_code" name="product_code" value ="{{ $params['amount'] }}" required>
+            <input type="hidden" id="product_service_charge" name="product_service_charge" value="{{ $params['amount'] }}" required>
+            <input type="hidden" id="product_delivery_charge" name="product_delivery_charge" value="{{ $params['amount'] }}" required>
+            <input type="hidden" id="success_url" name="success_url" value="{{ $params['amount'] }}" required>
+            <input type="hidden" id="failure_url" name="failure_url" value="{{ $params['amount'] }}" required>
+            <input type="hidden" id="signed_field_names" name="signed_field_names" value="{{ $params['amount'] }}" required>
+            <input type="hidden" id="signature" name="signature" value="{{ $params['amount'] }}" required>
+            <input value="Submit" type="submit">
         </form>
         <p class="mt-3">If you are not redirected automatically, <a href="#" onclick="document.getElementById('manual-submit').click(); return false;">click here</a>.</p>
     </div>
